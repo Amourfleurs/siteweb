@@ -220,12 +220,16 @@
         nav a {
             text-decoration: none;
             color: #ffffff;
-            transition: opacity 0.3s ease;
+            transition: opacity 0.3s ease, color 0.3s ease;
             white-space: nowrap;
             line-height: 1;
             position: relative;
             padding-bottom: 5px;
             top: 20px;
+        }
+
+        nav.dark-menu a {
+            color: #000000;
         }
 
         nav a::after {
@@ -271,14 +275,28 @@
 
         #baobab-collection,
         #bougie-marrakech {
-            background-color: #000;
+            background-color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         #baobab-collection {
-            background-image: url('https://cdn.assets.prezly.com/380cb381-09b0-4947-8787-770c2129c95c/Landscape_.png');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
+            background-image: none;
+        }
+
+        #baobab-collection .section-title,
+        #bougie-marrakech .section-title {
+            display: none;
+        }
+
+        #baobab-collection img.logo-section,
+        #bougie-marrakech img.logo-section {
+            max-width: 400px;
+            width: 90%;
+            height: auto;
+            object-fit: contain;
+            transform: translateX(-20px);
         }
 
         #mariages {
@@ -310,10 +328,7 @@
         }
 
         #bougie-marrakech {
-            background-image: url('https://i.postimg.cc/13JGcmYy/eaa88506-cdb0-429f-a03a-8805c8ef29fb.png');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
+            background-image: none;
         }
 
         #baobab-collection .bg-img,
@@ -773,6 +788,13 @@
         .baobab-text { top: calc(37% + 50px); }
         .deco-text { top: 30%; }
 
+        @media (max-width: 1210px) {
+            #baobab-collection img.logo-section,
+            #bougie-marrakech img.logo-section {
+                transform: translateX(0) !important;
+            }
+        }
+
         @media (max-width: 768px) {
             .section-title { font-size: 30px; left: 5%; width: 90%; }
             .baobab-text { top: calc(37% - 0px) !important; }
@@ -807,7 +829,7 @@
             <a href="#abonnements" data-index="4">Abonnements</a>
 
             <div class="logo-space">
-                <img id="logo-main" src="logo.png" alt="Amour de Fleurs" class="logo-img" width="150" height="150">
+                <img id="logo-main" src="https://i.postimg.cc/jjH8b0Mz/Chat-GPT-Image-5-juin-2026-21-38-45.png" alt="Amour de Fleurs" class="logo-img" width="150" height="150">
             </div>
 
             <a href="#baobab-collection" data-index="5">BaoBab collection</a>
@@ -898,13 +920,11 @@
         </section>
 
         <section id="baobab-collection">
-            <img class="bg-img" src='6.webp' loading="lazy" decoding="async" alt="Bougies Baobab Collection - Boutique de décoration de luxe Soisy">
-            <h2 class="section-title baobab-text">Une Invitation au <br> Voyage au Travers d'une <br> Flamme Unique</h2>
+            <img class="logo-section" src="https://eu.baobabcollection.com/cdn/shop/files/Design_sans_titre_7_03e59a02-bde6-4927-bd02-8013ba53ef52.png?crop=center&height=600&v=1728305175&width=1200" alt="Baobab Collection">
         </section>
         
         <section id="bougie-marrakech">
-            <img class="bg-img" src='7.webp' loading="lazy" decoding="async" alt="Bougies de luxe senteurs Marrakech - Idée cadeau fleuriste">
-            <h2 class="section-title">Marrakech aux senteurs <br> envoûtantes<br>L’élégance à l’état pur</h2>
+            <img class="logo-section" src="https://static.wixstatic.com/media/d0ef64_c138f083548847eb8bde1d63766fead0~mv2.png/v1/fill/w_404,h_404,al_c,q_85,enc_avif,quality_auto/d0ef64_c138f083548847eb8bde1d63766fead0~mv2.png" alt="Bougie Marrakech">
         </section>
 
         <section id="decoration">
@@ -1011,6 +1031,19 @@
                 shopPopup.style.bottom = "120px";
             }
 
+            // Changer le menu et le logo pour baobab/marrakech
+            const nav = document.querySelector('nav');
+            const logo = document.getElementById('logo-main');
+            const isPremiumSection = index === 5 || index === 6; // 5 = baobab, 6 = marrakech
+            
+            if (isPremiumSection) {
+                nav.classList.add('dark-menu');
+                logo.src = 'https://i.postimg.cc/jjH8b0Mz/Chat-GPT-Image-5-juin-2026-21-38-45.png';
+            } else {
+                nav.classList.remove('dark-menu');
+                logo.src = 'logo.png';
+            }
+
             navLinks.forEach(link => {
                 link.classList.remove('active');
                 if (parseInt(link.getAttribute('data-index')) === index) {
@@ -1090,3 +1123,4 @@
     </script>
 </body>
 </html>
+
