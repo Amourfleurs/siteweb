@@ -129,6 +129,16 @@
             color: #000000;
         }
 
+        body.dark-menu .shop-icon,
+        body.dark-menu .contact-icon,
+        body.dark-menu #persistent-contact,
+        body.dark-menu .home-social-links a,
+        body.dark-menu .home-social-links a svg {
+            color: #000000;
+            fill: #000000;
+            stroke: #000000;
+        }
+
         /* Overlay du menu mobile */
         #mobile-menu-overlay {
             position: fixed;
@@ -1044,10 +1054,12 @@
             if (isPremiumSection) {
                 nav.classList.add('dark-menu');
                 headerEl.classList.add('dark-menu');
+                document.body.classList.add('dark-menu');
                 logo.src = 'https://i.postimg.cc/jjH8b0Mz/Chat-GPT-Image-5-juin-2026-21-38-45.png';
             } else {
                 nav.classList.remove('dark-menu');
                 headerEl.classList.remove('dark-menu');
+                document.body.classList.remove('dark-menu');
                 logo.src = 'logo.png';
             }
 
