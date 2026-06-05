@@ -11,7 +11,7 @@
     <link rel="manifest" href="manifest.json">
     <link rel="canonical" href="https://www.amourdefleurs95.com/">
     
-    <!-- Social Media Mdeta Tags -->
+    <!-- Social Media Meta Tags -->
     <meta property="og:title" content="Amour de Fleurs - Boutique Florale">
     <meta property="og:description" content="Artisan fleuriste expert en bouquets raffinés et bougies de luxe à Soisy-sous-Montmorency.">
     <meta property="og:image" content="https://www.amourdefleurs95.com/logoblanc.png">
@@ -633,6 +633,7 @@
             #menu-toggle {
                 top: calc(50% + 32px) !important;
                 transform: translateY(-50%) !important;
+                left: 17px !important;
             }
                 /* Formulaire de contact : réduction supplémentaire et ancrage bas sur mobile */
                 .contact-overlay {
@@ -661,16 +662,34 @@
                 .footer-left {
                     display: none !important;
                 }
-                /* Ajustements mobiles des titres de section */
-                .abonnement-text {
-                    top: calc(35% + 100px) !important;
+                /* Décaler les icônes vers les côtés sur mobile uniquement */
+                .shop-icon {
+                    left: 17px !important;
                 }
-                .mariage-text {
-                    top: calc(27% + 60px) !important;
+                .contact-icon {
+                    left: 17px !important;
                 }
-                .bouquets-text {
-                    top: calc(20% + 30px) !important;
+                .shop-popup {
+                    left: 40px !important;
                 }
+                .home-social-links {
+                    right: 17px !important;
+                }
+                /* Afficher complètement les textes sections sans coupure sur mobile */
+                .section-title {
+                    left: 50% !important;
+                    transform: translateX(-50%) translateY(-50%) !important;
+                    text-align: center !important;
+                    width: 92% !important;
+                    font-size: 22px !important;
+                    max-width: 100% !important;
+                }
+                .bouquets-text { left: 50% !important; }
+                .mariage-text { left: 50% !important; }
+                .obseques-text { left: 50% !important; }
+                .abonnement-text { left: 50% !important; }
+                .baobab-text { left: 50% !important; }
+                .deco-text { left: 50% !important; }
         }
 
         /* TITRES SECTIONS */
@@ -690,9 +709,9 @@
             z-index: 10;
         }
 
-        .bouquets-text { left: 50%; top: 20%; transform: translate(-50%, -50%); text-align: center; }
+        .bouquets-text { left: calc(50% - 35px); top: calc(20% + 50px); transform: translate(-50%, -50%); text-align: center; }
         .mariage-text { top: 27%; left: 6%; }
-        .obseques-text { top: 24%; left: 5%; }
+        .obseques-text { top: calc(24% + 30px); left: 5%; }
         .abonnement-text { top: 35%; left: 6%; }
         .baobab-text { top: 37%; }
         .deco-text { top: 30%; }
