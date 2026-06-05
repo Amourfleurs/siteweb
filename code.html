@@ -274,6 +274,20 @@
             background-color: #000;
         }
 
+        #baobab-collection {
+            background-image: url('https://www.influences-by-m.com/wp-content/uploads/2024/05/BAOBAB_SS2024-307.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        #bougie-marrakech {
+            background-image: url('https://i.postimg.cc/13JGcmYy/eaa88506-cdb0-429f-a03a-8805c8ef29fb.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
         #baobab-collection .bg-img,
         #bougie-marrakech .bg-img {
             display: none;
@@ -694,6 +708,7 @@
                     font-size: 22px !important;
                     max-width: 100% !important;
                 }
+                #bougie-marrakech .section-title { top: calc(47% - 120px) !important; }
                 .bouquets-text { left: 50% !important; }
                 .mariage-text { left: 50% !important; }
                 .obseques-text { left: 50% !important; }
@@ -723,11 +738,12 @@
         .mariage-text { top: 27%; left: 6%; }
         .obseques-text { top: calc(24% + 30px); left: 5%; }
         .abonnement-text { top: 35%; left: 6%; }
-        .baobab-text { top: 37%; }
+        .baobab-text { top: calc(37% + 50px); }
         .deco-text { top: 30%; }
 
         @media (max-width: 768px) {
             .section-title { font-size: 30px; left: 5%; width: 90%; }
+            .baobab-text { top: calc(37% - 0px) !important; }
             .form-footer { flex-direction: column; gap: 20px; }
             .footer-left, .footer-right { flex: none; width: 100%; justify-content: center; }
         }
