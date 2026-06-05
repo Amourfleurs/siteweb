@@ -125,6 +125,10 @@
             padding: 10px;
         }
 
+        #main-header.dark-menu #menu-toggle {
+            color: #000000;
+        }
+
         /* Overlay du menu mobile */
         #mobile-menu-overlay {
             position: fixed;
@@ -810,9 +814,9 @@
         <a href="#mariages" onclick="closeMobileMenu()" data-index="2" aria-label="Découvrir nos compositions florales pour mariages">Mariages</a>
         <a href="#obseques" onclick="closeMobileMenu()" data-index="3" aria-label="Nos créations florales pour obsèques">Obsèques</a>
         <a href="#abonnements" onclick="closeMobileMenu()" data-index="4" aria-label="S'abonner à nos fleurs fraîches">Abonnements</a>
-        <a href="#baobab-collection" onclick="closeMobileMenu()" data-index="5" aria-label="Découvrir la collection Baobab">BaoBab collection</a>
-        <a href="#bougie-marrakech" onclick="closeMobileMenu()" data-index="6" aria-label="Bougie Marrakech aux senteurs envoûtantes">Bougie Marrakech</a>
-        <a href="#decoration" onclick="closeMobileMenu()" data-index="7" aria-label="Nos services de décoration florale">Décoration</a>
+        <a href="#decoration" onclick="closeMobileMenu()" data-index="5" aria-label="Nos services de décoration florale">Décoration</a>
+        <a href="#baobab-collection" onclick="closeMobileMenu()" data-index="6" aria-label="Découvrir la collection Baobab">BaoBab collection</a>
+        <a href="#bougie-marrakech" onclick="closeMobileMenu()" data-index="7" aria-label="Bougie Marrakech aux senteurs envoûtantes">Bougie Marrakech</a>
         <a href="#contact" onclick="closeMobileMenu()" data-index="8" aria-label="Nous contacter">Contact</a>
     </div>
 
@@ -832,9 +836,9 @@
                 <img id="logo-main" src="https://i.postimg.cc/jjH8b0Mz/Chat-GPT-Image-5-juin-2026-21-38-45.png" alt="Amour de Fleurs" class="logo-img" width="150" height="150">
             </div>
 
-            <a href="#baobab-collection" data-index="5">BaoBab collection</a>
-            <a href="#bougie-marrakech" data-index="6">Bougie Marrakech</a>
-            <a href="#decoration" data-index="7">Décoration</a>
+            <a href="#decoration" data-index="5">Décoration</a>
+            <a href="#baobab-collection" data-index="6">BaoBab collection</a>
+            <a href="#bougie-marrakech" data-index="7">Bougie Marrakech</a>
         </nav>
     </header>
 
@@ -919,17 +923,17 @@
             <h2 class="section-title abonnement-text">Abonnement floral.<br>Fraîcheur toute l’année</h2>
         </section>
 
+        <section id="decoration">
+            <img class="bg-img" src='8.webp' loading="lazy" decoding="async" alt="Objets de décoration et compositions florales intérieures">
+            <h2 class="section-title deco-text">L'art de sublimer <br> votre intérieur</h2>
+        </section>
+
         <section id="baobab-collection">
             <img class="logo-section" src="https://eu.baobabcollection.com/cdn/shop/files/Design_sans_titre_7_03e59a02-bde6-4927-bd02-8013ba53ef52.png?crop=center&height=600&v=1728305175&width=1200" alt="Baobab Collection">
         </section>
         
         <section id="bougie-marrakech">
             <img class="logo-section" src="https://static.wixstatic.com/media/d0ef64_c138f083548847eb8bde1d63766fead0~mv2.png/v1/fill/w_404,h_404,al_c,q_85,enc_avif,quality_auto/d0ef64_c138f083548847eb8bde1d63766fead0~mv2.png" alt="Bougie Marrakech">
-        </section>
-
-        <section id="decoration">
-            <img class="bg-img" src='8.webp' loading="lazy" decoding="async" alt="Objets de décoration et compositions florales intérieures">
-            <h2 class="section-title deco-text">L'art de sublimer <br> votre intérieur</h2>
         </section>
 
         <section id="contact">
@@ -1033,14 +1037,17 @@
 
             // Changer le menu et le logo pour baobab/marrakech
             const nav = document.querySelector('nav');
+            const headerEl = document.getElementById('main-header');
             const logo = document.getElementById('logo-main');
-            const isPremiumSection = index === 5 || index === 6; // 5 = baobab, 6 = marrakech
+            const isPremiumSection = index === 6 || index === 7; // 6 = baobab, 7 = marrakech
             
             if (isPremiumSection) {
                 nav.classList.add('dark-menu');
+                headerEl.classList.add('dark-menu');
                 logo.src = 'https://i.postimg.cc/jjH8b0Mz/Chat-GPT-Image-5-juin-2026-21-38-45.png';
             } else {
                 nav.classList.remove('dark-menu');
+                headerEl.classList.remove('dark-menu');
                 logo.src = 'logo.png';
             }
 
@@ -1123,4 +1130,3 @@
     </script>
 </body>
 </html>
-
