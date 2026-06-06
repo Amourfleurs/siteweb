@@ -179,6 +179,13 @@
             border: none;
         }
 
+        @media (max-width: 768px) {
+            body.dark-menu #mobile-menu-overlay a,
+            body.dark-menu #close-menu {
+                color: #000000;
+            }
+        }
+
         /* Adaptations pour écrans < 1211px */
         @media (max-width: 1210px) {
             nav a {
@@ -1002,6 +1009,7 @@
         const submitBtn = document.querySelector('.btn-submit');
 
         let currentIndex = 0;
+        let previousIndex = 0;
         let isTransitioning = false;
 
         function playSound() {
@@ -1027,7 +1035,7 @@
         }
         closeMenuBtn.addEventListener('click', closeMobileMenu);
 
-        function updateUI(index) {
+        function updateUI(index, prevIndex = index) {
             if (index === 8) {
                 header.style.opacity = "0";
                 header.style.pointerEvents = "none";
@@ -1050,12 +1058,21 @@
             const headerEl = document.getElementById('main-header');
             const logo = document.getElementById('logo-main');
             const isPremiumSection = index === 6 || index === 7; // 6 = baobab, 7 = marrakech
-            
-            if (isPremiumSection) {
+            const isFromDecorationToBaobab = prevIndex === 5 && index === 6;
+
+            function applyDarkMode() {
                 nav.classList.add('dark-menu');
                 headerEl.classList.add('dark-menu');
                 document.body.classList.add('dark-menu');
                 logo.src = 'https://i.postimg.cc/jjH8b0Mz/Chat-GPT-Image-5-juin-2026-21-38-45.png';
+            }
+
+            if (isPremiumSection) {
+                if (isFromDecorationToBaobab) {
+                    setTimeout(applyDarkMode, 600);
+                } else {
+                    applyDarkMode();
+                }
             } else {
                 nav.classList.remove('dark-menu');
                 headerEl.classList.remove('dark-menu');
@@ -1074,6 +1091,7 @@
         function goToSection(index) {
             if (index < 0 || index >= sections.length || isTransitioning) return;
             isTransitioning = true;
+            const prevIndex = currentIndex;
             currentIndex = index;
 
             sections.forEach((section, i) => {
@@ -1084,7 +1102,7 @@
                 }
             });
 
-            updateUI(currentIndex);
+            updateUI(currentIndex, prevIndex);
             setTimeout(() => { isTransitioning = false; }, 900);
         }
 
