@@ -31,12 +31,12 @@
                 loadScript('https://www.clarity.ms/tag/x7gn9ljkl7');
             }
             function loadGtag(){
-                loadScript('https://www.googletagmanager.com/gtag/js?id=G-JRQ26YKPLR', function(){
-                    window.dataLayer = window.dataLayer || [];
-                    function gtag(){dataLayer.push(arguments);} window.gtag = gtag;
-                    gtag('js', new Date());
-                    gtag('config','G-JRQ26YKPLR', { 'anonymize_ip': true });
-                });
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){window.dataLayer.push(arguments);} 
+                window.gtag = window.gtag || gtag;
+                window.gtag('js', new Date());
+                window.gtag('config','G-JRQ26YKPLR', { 'anonymize_ip': true });
+                loadScript('https://www.googletagmanager.com/gtag/js?id=G-JRQ26YKPLR');
             }
             function removeScript(srcPattern){
                 var scripts = document.querySelectorAll('script[src]');
