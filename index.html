@@ -1011,6 +1011,13 @@
         </section>
     </div>
 
+    <div id="clarity-banner" style="position:fixed;bottom:0;left:0;width:100%;background:rgba(0, 0, 0, 0.3);color:#fff;padding:10px 15px;font-family:Arial,sans-serif;font-size:13px;text-align:center;z-index:99999;box-sizing:border-box;">
+        <div style="display:inline-flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;max-width:1200px;margin:0 auto;">
+            <span>Ce site utilise Microsoft Clarity pour analyser son utilisation. Si vous ne souhaitez pas que ces données soient collectées, merci de quitter le site.</span>
+            <button id="close-clarity-banner" type="button" aria-label="Fermer la bannière" style="background:transparent;border:1px solid #fff;color:#fff;padding:4px 8px;cursor:pointer;font-size:12px;">Fermer</button>
+        </div>
+    </div>
+
     <audio id="click-sound" src="ui.mp3" preload="none"></audio>
 
     <script>
@@ -1173,6 +1180,33 @@
                 shopPopup.classList.remove('active');
             }
         });
+
+        const clarityBanner = document.getElementById('clarity-banner');
+        const closeClarityBannerBtn = document.getElementById('close-clarity-banner');
+
+        function hideClarityBanner() {
+            if (clarityBanner) {
+                clarityBanner.style.display = 'none';
+            }
+            try {
+                localStorage.setItem('clarity-banner-closed', 'true');
+            } catch (error) {
+                console.warn('Impossible d’enregistrer l’état de la bannière :', error);
+            }
+        }
+
+        if (clarityBanner && closeClarityBannerBtn) {
+            try {
+                const hasClosedBanner = localStorage.getItem('clarity-banner-closed');
+                if (hasClosedBanner === 'true') {
+                    clarityBanner.style.display = 'none';
+                }
+            } catch (error) {
+                console.warn('Impossible de lire l’état de la bannière :', error);
+            }
+
+            closeClarityBannerBtn.addEventListener('click', hideClarityBanner);
+        }
 
         updateUI(0);
 
