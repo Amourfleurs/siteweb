@@ -455,6 +455,32 @@
             resize: none;
         }
 
+        .privacy-group {
+            display: none;
+            margin-top: 12px;
+            text-align: left;
+        }
+
+        .privacy-group.visible {
+            display: block;
+        }
+
+        .privacy-label {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            font-size: 10px;
+            line-height: 1.5;
+            opacity: 0.85;
+            cursor: pointer;
+        }
+
+        .privacy-label input {
+            margin-top: 2px;
+            accent-color: #ffffff;
+            flex-shrink: 0;
+        }
+
         /* NOUVEAU FOOTER POUR CENTRAGE PARFAIT */
         .form-footer {
             display: flex;
@@ -982,6 +1008,13 @@
                         <div class="form-group"><label for="email">Email *</label><input id="email" name="email" type="email" required></div>
                         <div class="form-group"><label for="telephone">Téléphone *</label><input id="telephone" name="telephone" type="tel" required></div>
                         <div class="form-group"><label for="message">Message *</label><textarea id="message" name="message" placeholder="Votre message..." required></textarea></div>
+
+                        <div class="privacy-group" id="privacy-group">
+                            <label class="privacy-label" for="privacy">
+                                <input type="checkbox" id="privacy" name="privacy" required>
+                                <span>J'accepte que les informations saisies dans ce formulaire soient utilisées par Aureum Studio afin de répondre à ma demande. Mes données ne seront pas utilisées à d'autres fins. J'ai pris connaissance de la Politique de confidentialité. <strong>(obligatoire)</strong></span>
+                            </label>
+                        </div>
                         
                         <div class="form-footer">
                             <div class="footer-left">
@@ -1033,6 +1066,32 @@
         const mobileOverlay = document.getElementById('mobile-menu-overlay');
         const closeMenuBtn = document.getElementById('close-menu');
         const submitBtn = document.querySelector('.btn-submit');
+        const form = document.querySelector('#contact form');
+        const privacyGroup = document.getElementById('privacy-group');
+        const privacyCheckbox = document.getElementById('privacy');
+        const requiredFields = Array.from(form.querySelectorAll('input[required], textarea[required]'));
+
+        function updatePrivacyVisibility() {
+            const allFilled = requiredFields.every(field => {
+                if (field.type === 'email') {
+                    return field.value.trim() !== '' && field.value.includes('@');
+                }
+                return field.value.trim() !== '';
+            });
+
+            privacyGroup.classList.toggle('visible', allFilled);
+
+            if (!allFilled) {
+                privacyCheckbox.checked = false;
+            }
+        }
+
+        requiredFields.forEach(field => {
+            field.addEventListener('input', updatePrivacyVisibility);
+            field.addEventListener('change', updatePrivacyVisibility);
+        });
+
+        updatePrivacyVisibility();
 
         let currentIndex = 0;
         let previousIndex = 0;
