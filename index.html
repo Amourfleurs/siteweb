@@ -1073,6 +1073,23 @@
         const privacyCheckbox = document.getElementById('privacy');
         const requiredFields = Array.from(form.querySelectorAll('input[required], textarea[required]'));
 
+        form.addEventListener('submit', (event) => {
+            if (!privacyCheckbox.checked) {
+                event.preventDefault();
+                privacyCheckbox.setCustomValidity('Vous devez accepter la politique de confidentialité pour envoyer votre message.');
+                privacyCheckbox.reportValidity();
+                privacyCheckbox.focus();
+            } else {
+                privacyCheckbox.setCustomValidity('');
+            }
+        });
+
+        privacyCheckbox.addEventListener('change', () => {
+            if (privacyCheckbox.checked) {
+                privacyCheckbox.setCustomValidity('');
+            }
+        });
+
         function updatePrivacyVisibility() {
             const allFilled = requiredFields.every(field => {
                 if (field.type === 'email') {
