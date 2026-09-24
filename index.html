@@ -334,6 +334,21 @@
             position: relative;
         }
 
+        @media (min-width: 1211px) {
+            #main-nav {
+                height: 130px;
+                align-items: center;
+            }
+
+            #main-nav .logo-space {
+                height: 130px;
+            }
+
+            #main-nav > a {
+                top: 0;
+            }
+        }
+
         .logo-space {
             width: 320px;
             height: 0px; 
@@ -346,7 +361,7 @@
             top: -45px;
             left: 50%;
             transform: translateX(-50%);
-            height: 180px;
+            height: 220px;
             width: auto;
             transition: opacity 0.3s ease; 
             cursor: pointer;
@@ -1112,7 +1127,7 @@
             <a href="#abonnements" data-index="4">Abonnements</a>
 
             <div class="logo-space">
-                <img id="logo-main" src="https://i.postimg.cc/jjH8b0Mz/Chat-GPT-Image-5-juin-2026-21-38-45.png" alt="Amour de Fleurs" class="logo-img" width="150" height="150">
+                <img id="logo-main" src="https://i.ibb.co/FbFpYxTm/logo.png" alt="Amour de Fleurs" class="logo-img" width="150" height="150">
             </div>
 
             <a href="#decoration" data-index="5">Décoration</a>
@@ -1388,7 +1403,7 @@
                 nav.classList.add('dark-menu');
                 headerEl.classList.add('dark-menu');
                 document.body.classList.add('dark-menu');
-                logo.src = 'https://i.postimg.cc/jjH8b0Mz/Chat-GPT-Image-5-juin-2026-21-38-45.png';
+                logo.src = 'https://i.ibb.co/FbFpYxTm/logo.png';
             }
 
             if (isPremiumSection) {
