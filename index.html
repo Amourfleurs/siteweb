@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -110,7 +110,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -168,6 +167,54 @@
     }
     </script>
     <style>
+        @font-face {
+            font-family: "Snell Roundhand";
+            src: url("Snell%20Roundhand%20Regular.ttf") format("truetype");
+            font-style: normal;
+            font-weight: 400;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: "Optima";
+            src: url("fonts/optima-regular.ttf") format("truetype");
+            font-style: normal;
+            font-weight: 400;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: "Optima";
+            src: url("fonts/optima-medium.ttf") format("truetype");
+            font-style: normal;
+            font-weight: 500;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: "Optima";
+            src: url("fonts/optima-bold.ttf") format("truetype");
+            font-style: normal;
+            font-weight: 700;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: "OptimaAccent";
+            src: url("fonts/optima-medium.ttf") format("truetype");
+            font-style: normal;
+            font-weight: 500;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: "Optima";
+            src: url("fonts/optima-italic.ttf") format("truetype");
+            font-style: italic;
+            font-weight: 400;
+            font-display: swap;
+        }
+
         /* Reset et base */
         body, html {
             margin: 0;
@@ -180,13 +227,15 @@
         /* HEADER FIXE */
         header {
             position: fixed;
-            top: 60px; 
+            top: 0;
             left: 0;
             width: 100%;
+            min-height: 96px;
             z-index: 1000;
             font-family: "Times New Roman", serif;
             text-transform: uppercase;
-            color: #ffffff;
+            color: #000000;
+            background-color: #ffffff;
             transition: opacity 0.5s ease;
         }
         
@@ -201,7 +250,7 @@
             z-index: 1100;
             background: none;
             border: none;
-            color: white;
+            color: #000000;
             padding: 10px;
         }
 
@@ -220,16 +269,6 @@
             color: #000000;
         }
 
-        body.dark-menu .shop-icon,
-        body.dark-menu .contact-icon,
-        body.dark-menu #persistent-contact,
-        body.dark-menu .home-social-links a,
-        body.dark-menu .home-social-links a svg {
-            color: #000000;
-            fill: #000000;
-            stroke: #000000;
-        }
-
         /* Overlay du menu mobile */
         #mobile-menu-overlay {
             position: fixed;
@@ -245,17 +284,17 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            gap: 25px;
+            gap: 35px;
         }
 
         #mobile-menu-overlay a {
-            color: #ffffff;
+            color: #000000;
             text-decoration: none;
-            font-family: "Times New Roman", serif;
-            font-size: 18px;
+            font-family: "Optima", sans-serif;
+            font-size: 21px;
             text-transform: uppercase;
             letter-spacing: 3px;
-            font-weight: bold;
+            font-weight: 700;
             transition: opacity 0.3s;
             position: relative;
         }
@@ -276,7 +315,7 @@
             top: 40px;
             right: 40px;
             font-size: 30px;
-            color: #ffffffff;
+            color: #000000;
             cursor: pointer;
             background: none;
             border: none;
@@ -294,6 +333,12 @@
         }
 
         @media (max-width: 768px) {
+            header {
+                min-height: 96px;
+            }
+            #main-nav .logo-space {
+                height: 96px;
+            }
             body.dark-menu #mobile-menu-overlay a,
             body.dark-menu #close-menu {
                 color: #000000;
@@ -312,8 +357,7 @@
                 width: auto;
             }
             .logo-img {
-                height: 70px;
-                top: -30px;
+                height: 75px;
             }
         }
         
@@ -327,21 +371,22 @@
             display: flex;
             justify-content: center;
             align-items: flex-start;
-            gap: 25px;
-            letter-spacing: 2px;
-            font-size: 11px;
-            font-weight: bold;
+            gap: 55px;
+            font-family: "Optima", sans-serif;
+            letter-spacing: 3px;
+            font-size: 16px;
+            font-weight: 700;
             position: relative;
         }
 
         @media (min-width: 1211px) {
             #main-nav {
-                height: 130px;
+                height: 96px;
                 align-items: center;
             }
 
             #main-nav .logo-space {
-                height: 130px;
+                height: 96px;
             }
 
             #main-nav > a {
@@ -351,17 +396,17 @@
 
         .logo-space {
             width: 320px;
-            height: 0px; 
+            height: 96px;
             position: relative;
             display: block;
         }
 
         .logo-img {
             position: absolute;
-            top: -45px;
+            top: 50%;
             left: 50%;
-            transform: translateX(-50%);
-            height: 220px;
+            transform: translate(-50%, -50%);
+            height: 125px;
             width: auto;
             transition: opacity 0.3s ease; 
             cursor: pointer;
@@ -380,13 +425,19 @@
 
         nav a {
             text-decoration: none;
-            color: #ffffff;
+            color: #000000;
             transition: opacity 0.3s ease, color 0.3s ease;
             white-space: nowrap;
             line-height: 1;
             position: relative;
             padding-bottom: 5px;
             top: 20px;
+        }
+
+        .menu-accent {
+            font-family: "OptimaAccent", sans-serif;
+            font-weight: 700;
+            font-synthesis: weight;
         }
 
         /* Zone de clic étendue pour les liens de menu */
@@ -443,8 +494,13 @@
             overflow: hidden;
         }
 
-        #baobab-collection,
-        #bougie-marrakech {
+        @media (min-width: 769px) {
+            section {
+                transition-duration: 0.75s;
+            }
+        }
+
+        #baobab-collection {
             background-color: #ffffff;
             display: flex;
             justify-content: center;
@@ -452,53 +508,38 @@
         }
 
         #baobab-collection {
-            background-image: none;
-        }
-
-        #baobab-collection .section-title,
-        #bougie-marrakech .section-title {
-            display: none;
-        }
-
-        #baobab-collection img.logo-section,
-        #bougie-marrakech img.logo-section {
-            max-width: 400px;
-            width: 90%;
-            height: auto;
-            object-fit: contain;
-            transform: translateX(-20px);
+            background-image: url('SLIDE 7ordinateur.webp');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
         }
 
         #mariages {
-            background-image: url('https://shootnbox.fr/wp-content/uploads/2026/01/bouquet-fleurs-mariage-orchidee-tropical.jpg');
+            background-image: url('SLIDE 3ordinateur.webp');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
         }
 
         #bouquets {
-            background-image: url('https://i.ibb.co/rG4BWPbZ/image-upscaled.png');
+            background-image: url('SLIDE 2ordinateur.webp');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
         }
 
         #abonnements {
-            background-image: url('https://www.cfa-espace-concours.fr/wp-content/uploads/2024/07/journee-type-fleuriste-scaled.jpeg');
+            background-image: url('SLIDE 4ordinateur.webp');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
         }
 
         #obseques {
-            background-image: url('https://binette-et-jardin.ouest-france.fr/images/dossiers/2024-10/fleurs-enterrement-171530.jpg');
+            background-image: url('SLIDE 5ordinateur.webp');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-        }
-
-        #bougie-marrakech {
-            background-image: none;
         }
 
         #baobab-collection .bg-img,
@@ -506,8 +547,193 @@
         #mariages .bg-img,
         #abonnements .bg-img,
         #obseques .bg-img,
-        #bougie-marrakech .bg-img {
+        #decoration .bg-img {
             display: none;
+        }
+
+        #decoration {
+            background-image: url('SLIDE 6ordinateur.webp');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        #baobab-collection .baobab-title,
+        #baobab-collection .brand-logo {
+            display: none;
+        }
+
+        #decoration .section-title {
+            position: absolute;
+            top: 19%;
+            left: 53%;
+            width: min(55vw, 760px);
+            transform: none;
+            text-align: left;
+            font-family: "Optima", "Avenir Next", "Segoe UI", sans-serif;
+            font-size: clamp(22px, 1.95vw, 42px);
+            font-weight: 300;
+            letter-spacing: 0.05em;
+            line-height: 1.12;
+            text-shadow: 0 2px 12px rgba(0, 0, 0, 0.45);
+            overflow: visible;
+            white-space: normal;
+            z-index: 12;
+        }
+
+        @media (min-width: 769px) {
+            #baobab-collection .baobab-title {
+                display: block;
+                position: absolute;
+                top: 20%;
+                left: 51%;
+                width: 46%;
+                margin: 0;
+                color: #ffffff;
+                font-family: "Optima", "Avenir Next", "Segoe UI", sans-serif;
+                font-size: clamp(22px, 1.95vw, 42px);
+                font-weight: 300;
+                letter-spacing: 0.05em;
+                line-height: 1.12;
+                text-align: left;
+                text-shadow: 0 2px 12px rgba(0, 0, 0, 0.45);
+                z-index: 12;
+            }
+
+            #baobab-collection .brand-logo {
+                display: block;
+                position: absolute;
+                bottom: 7%;
+                width: clamp(120px, 13vw, 240px);
+                max-height: 15vh;
+                object-fit: contain;
+                z-index: 12;
+            }
+
+            #baobab-collection .baobab-logo {
+                left: 28%;
+                transform: translateX(-50%);
+            }
+
+            #baobab-collection .cote-bougie-logo {
+                left: 72%;
+                transform: translateX(-50%);
+            }
+        }
+
+        #decoration .decoration-accent {
+            position: relative;
+        }
+
+        #decoration .decoration-accent::after {
+            content: "";
+            position: absolute;
+            top: -0.08em;
+            left: 0.08em;
+            width: 0.24em;
+            height: 0.055em;
+            border-radius: 50%;
+            background: currentColor;
+            transform: rotate(-55deg);
+        }
+
+        @media (max-width: 768px) {
+            #decoration .section-title {
+                top: 14%;
+                left: 50%;
+                width: min(90vw, 620px);
+                transform: translateX(-50%);
+                text-align: right;
+                font-size: clamp(21px, 5.4vw, 32px);
+                letter-spacing: 0.04em;
+                line-height: 1.18;
+            }
+        }
+
+        @media (max-width: 768px) {
+            #bouquets {
+                background-image: url('SLIDE 2mobile.webp');
+            }
+
+            #mariages {
+                background-image: url('SLIDE 3mobile.webp');
+            }
+
+            #obseques {
+                background-image: url('SLIDE 5mobile.webp');
+            }
+
+            #abonnements {
+                background-image: url('SLIDE 4mobile.webp');
+            }
+
+            #decoration {
+                background-image: url('SLIDE 6mobile.webp');
+            }
+
+            #baobab-collection {
+                background-image: url('SLIDE 7mobile.webp');
+            }
+
+        }
+
+        .hero-picture {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        .hero-tagline {
+            display: none;
+        }
+
+        @media (min-width: 769px) {
+            #accueil .hero-picture {
+                height: calc(100% - 96px);
+                margin-top: 96px;
+            }
+
+            .hero-tagline {
+                display: block;
+                position: absolute;
+                right: 10%;
+                bottom: 12%;
+                z-index: 2;
+                color: #ffffff;
+                text-align: right;
+                text-shadow: 0 2px 12px rgba(0, 0, 0, 0.65);
+            }
+
+            .hero-tagline h2 {
+                margin: 0;
+                font-family: "Optima", serif;
+                font-size: clamp(26px, 2.7vw, 42px);
+                font-weight: 400;
+                line-height: 1.15;
+            }
+
+            .hero-tagline .hero-accent {
+                position: relative;
+            }
+
+            .hero-tagline .hero-accent::after {
+                content: "";
+                position: absolute;
+                top: -0.08em;
+                left: 0.08em;
+                width: 0.24em;
+                height: 0.055em;
+                border-radius: 50%;
+                background: currentColor;
+                transform: rotate(-55deg);
+            }
+
+            .hero-tagline p {
+                margin: 16px 0 0;
+                font-family: "Snell Roundhand", cursive;
+                font-size: clamp(26px, 2.5vw, 38px);
+                line-height: 1.2;
+            }
         }
 
         img.bg-img {
@@ -714,6 +940,22 @@
             border: 0;
         }
 
+        .gallery-caption .accent-character {
+            position: relative;
+        }
+
+        .gallery-caption .accent-character::after {
+            content: "";
+            position: absolute;
+            top: -0.08em;
+            left: 0.08em;
+            width: 0.24em;
+            height: 0.055em;
+            border-radius: 50%;
+            background: currentColor;
+            transform: rotate(-55deg);
+        }
+
         /* Icône de contact persistante */
         .shop-icon {
             position: fixed;
@@ -746,8 +988,8 @@
             filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.6));
         }
         .shop-icon svg {
-            width: 24px;
-            height: 24px;
+            width: 32px;
+            height: 32px;
         }
 
         /* Popup Boutique */
@@ -922,8 +1164,8 @@
             filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.6));
         }
         .contact-icon svg {
-            width: 24px;
-            height: 24px;
+            width: 32px;
+            height: 32px;
             fill: currentColor;
         }
 
@@ -987,20 +1229,20 @@
         /* Mobile spécifique: réduire le logo sans impacter la vue desktop */
         @media (max-width: 480px) {
             .logo-img {
-                height: 140px !important;
-                top: -18px !important;
+                height: 110px !important;
+                top: 50% !important;
                 left: 50%;
-                transform: translateX(-50%);
+                transform: translate(-50%, -50%);
             }
             .logo-space {
                 width: 200px;
             }
             header {
-                top: 52px; /* ajustement pour la nouvelle taille du logo */
+                top: 0;
             }
             /* Abaisse l'icône menu uniquement sur mobile (n'affecte pas desktop) */
             #menu-toggle {
-                top: calc(50% + 32px) !important;
+                top: 50% !important;
                 transform: translateY(-50%) !important;
                 left: 17px !important;
             }
@@ -1053,7 +1295,6 @@
                     font-size: 22px !important;
                     max-width: 100% !important;
                 }
-                #bougie-marrakech .section-title { top: calc(47% - 120px) !important; }
                 .bouquets-text { left: 50% !important; }
                 .mariage-text { left: 50% !important; }
                 .obseques-text { left: 50% !important; }
@@ -1080,16 +1321,91 @@
         }
 
         .bouquets-text { left: calc(50% - 35px); top: calc(20% + 50px); transform: translate(-50%, -50%); text-align: center; }
+        @media (min-width: 769px) {
+            .bouquets-text {
+                top: auto;
+                right: auto;
+                bottom: 7%;
+                left: 8%;
+                margin: 0;
+                transform: none;
+                width: 38%;
+                font-family: "Optima", Georgia, serif;
+                font-size: clamp(22px, 1.95vw, 42px);
+                line-height: 1.25;
+                text-align: left;
+            }
+        }
+        .bouquets-text .accent-character {
+            position: relative;
+        }
+        .bouquets-text .accent-character::after {
+            content: "";
+            position: absolute;
+            top: -0.08em;
+            left: 0.08em;
+            width: 0.24em;
+            height: 0.055em;
+            border-radius: 50%;
+            background: currentColor;
+            transform: rotate(-55deg);
+        }
         .mariage-text { top: 27%; left: 6%; }
+        @media (min-width: 769px) {
+            .mariage-text {
+                top: 24%;
+                right: auto;
+                left: 50%;
+                width: 60%;
+                margin: 0;
+                transform: translateX(-50%);
+                font-family: "Optima", "Avenir Next", "Segoe UI", sans-serif;
+                font-weight: 300;
+                font-size: clamp(22px, 1.95vw, 42px);
+                line-height: 1.25;
+                letter-spacing: 0.02em;
+                text-align: center;
+            }
+
+        }
         .obseques-text { top: calc(24% + 30px); left: 5%; }
         .abonnement-text { top: 35%; left: 6%; }
         .baobab-text { top: calc(37% + 50px); }
         .deco-text { top: 30%; }
 
-        @media (max-width: 1210px) {
-            #baobab-collection img.logo-section,
-            #bougie-marrakech img.logo-section {
-                transform: translateX(0) !important;
+        @media (min-width: 769px) {
+            .obseques-text {
+                top: auto;
+                right: auto;
+                bottom: 8%;
+                left: 8%;
+                margin: 0;
+                transform: none;
+                width: auto;
+                font-family: "Optima", "Avenir Next", "Segoe UI", sans-serif;
+                font-weight: 300;
+                font-size: clamp(22px, 1.95vw, 42px);
+                line-height: 1.25;
+                letter-spacing: 0.02em;
+                text-align: left;
+                text-shadow: 0 2px 12px rgba(0, 0, 0, 0.45);
+            }
+
+            .deco-text {
+                top: auto;
+                right: 8%;
+                bottom: 5.5%;
+                left: auto;
+                margin: 0;
+                transform: none;
+                width: 42%;
+                font-family: "Optima", "Avenir Next", "Segoe UI", sans-serif;
+                font-weight: 300;
+                font-size: clamp(22px, 1.95vw, 42px);
+                line-height: 1.25;
+                letter-spacing: 0.02em;
+                text-align: right;
+                text-shadow: 0 2px 12px rgba(0, 0, 0, 0.45);
             }
         }
 
@@ -1099,6 +1415,456 @@
             .form-footer { flex-direction: column; gap: 20px; }
             .footer-left, .footer-right { flex: none; width: 100%; justify-content: center; }
         }
+
+        .mobile-title-break {
+            display: none;
+        }
+
+        .desktop-title-break {
+            display: initial;
+        }
+
+        @media (max-width: 768px) {
+            #persistent-socials,
+            #persistent-contact,
+            #shop-trigger {
+                display: none !important;
+            }
+
+            .mobile-title-break {
+                display: initial;
+            }
+
+            .desktop-title-break {
+                display: none;
+            }
+
+            #accueil .hero-tagline {
+                display: block !important;
+                position: absolute;
+                top: auto;
+                right: 6%;
+                bottom: 8%;
+                left: 6%;
+                color: #ffffff;
+                text-align: right;
+                text-shadow: 0 2px 12px rgba(0, 0, 0, 0.65);
+                z-index: 2;
+            }
+
+            #accueil .hero-tagline h2 {
+                margin: 0;
+                font-family: "Optima", serif;
+                font-size: clamp(24px, 6.2vw, 46px);
+                font-weight: 400;
+                line-height: 1.15;
+            }
+
+            #accueil .hero-tagline p {
+                margin: 5px 0 0;
+                font-family: "Snell Roundhand", cursive;
+                font-size: clamp(23px, 5.8vw, 42px);
+                line-height: 1.2;
+            }
+
+            #bouquets .bouquets-text,
+            #mariages .mariage-text,
+            #obseques .obseques-text,
+            #abonnements .abonnement-text,
+            #decoration .section-title,
+            #baobab-collection .baobab-title {
+                top: auto !important;
+                right: auto !important;
+                transform: none !important;
+                color: #ffffff;
+                font-family: "Optima", "Avenir Next", "Segoe UI", sans-serif;
+                font-size: clamp(21px, 5.8vw, 44px) !important;
+                font-weight: 400;
+                letter-spacing: 0.02em;
+                line-height: 1.25;
+                text-shadow: 0 2px 12px rgba(0, 0, 0, 0.55);
+                max-width: none !important;
+                z-index: 12;
+            }
+
+            #bouquets .bouquets-text {
+                bottom: 7% !important;
+                left: 9% !important;
+                width: 82% !important;
+                text-align: left !important;
+            }
+
+            #mariages .mariage-text {
+                bottom: 7% !important;
+                left: 50% !important;
+                width: 82% !important;
+                transform: translateX(-50%) !important;
+                text-align: center !important;
+            }
+
+            #obseques .obseques-text {
+                bottom: 8% !important;
+                left: 9% !important;
+                width: 72% !important;
+                text-align: left !important;
+            }
+
+            #abonnements .abonnement-text {
+                bottom: 5.5% !important;
+                right: 9% !important;
+                left: auto !important;
+                width: 82% !important;
+                text-align: right !important;
+            }
+
+            #decoration .section-title {
+                bottom: 6% !important;
+                right: 8% !important;
+                left: auto !important;
+                width: 84% !important;
+                transform: none !important;
+                font-size: clamp(21px, 5.4vw, 32px) !important;
+                text-align: right !important;
+                white-space: nowrap;
+            }
+
+            #baobab-collection .baobab-title {
+                display: block !important;
+                position: absolute;
+                top: auto !important;
+                bottom: 7% !important;
+                right: 4% !important;
+                left: auto !important;
+                width: 88% !important;
+                margin: 0;
+                font-size: clamp(20px, 5.2vw, 30px) !important;
+                text-align: right !important;
+            }
+
+            #baobab-collection .brand-logo {
+                display: block !important;
+                position: absolute;
+                top: 25%;
+                bottom: auto;
+                width: 34%;
+                max-height: 10vh;
+                object-fit: contain;
+                transform: translate(-50%, -50%);
+                z-index: 12;
+            }
+
+            #baobab-collection .baobab-logo {
+                left: 34%;
+                width: 30%;
+            }
+
+            #baobab-collection .cote-bougie-logo {
+                display: block !important;
+                left: 66%;
+                width: 30%;
+            }
+
+            #bouquets .bouquets-text,
+            #mariages .mariage-text,
+            #obseques .obseques-text,
+            #abonnements .abonnement-text,
+            #baobab-collection .baobab-title {
+                font-size: clamp(21px, 5.4vw, 32px) !important;
+            }
+        }
+
+        section > button.gallery-trigger {
+            position: absolute;
+            inset: 0;
+            z-index: 11;
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            border: 0;
+            background: transparent;
+            cursor: zoom-in;
+        }
+
+        #bouquets,
+        #mariages,
+        #obseques,
+        #abonnements,
+        #decoration,
+        #baobab-collection {
+            cursor: zoom-in;
+        }
+
+        #bouquets .section-title,
+        #mariages .section-title,
+        #obseques .section-title,
+        #abonnements .section-title,
+        #decoration .section-title,
+        #baobab-collection .baobab-title,
+        #baobab-collection .brand-logo {
+            pointer-events: none;
+        }
+
+        .gallery-trigger:focus-visible {
+            outline: 3px solid #ffffff;
+            outline-offset: -10px;
+        }
+
+        .gallery-control:focus-visible {
+            outline: 2px solid #ffffff;
+            outline-offset: 4px;
+        }
+
+        .gallery[hidden] {
+            display: none;
+        }
+
+        .gallery {
+            position: fixed;
+            z-index: 100001;
+            inset: 0;
+            display: grid;
+            place-items: center;
+            padding: clamp(16px, 3vw, 44px);
+            box-sizing: border-box;
+            background: rgba(8, 8, 8, 0.96);
+            color: #ffffff;
+            font-family: "Optima", "Avenir Next", "Segoe UI", sans-serif;
+            overscroll-behavior: contain;
+            touch-action: pan-y;
+        }
+
+        .gallery-dialog {
+            position: relative;
+            display: grid;
+            grid-template-rows: minmax(0, 1fr) auto;
+            width: min(100%, 1440px);
+            height: min(100%, 940px);
+            min-height: 0;
+        }
+
+        .gallery-close {
+            position: absolute;
+            z-index: 2;
+            top: 18px;
+            right: 18px;
+            display: grid;
+            place-items: center;
+            width: 46px;
+            height: 46px;
+            padding: 0;
+            border: 1px solid rgba(255, 255, 255, 0.38);
+            border-radius: 50%;
+            background: rgba(12, 12, 12, 0.58);
+            color: #f7f3ef;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+            cursor: pointer;
+            transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .gallery-control svg {
+            display: block;
+            width: 18px;
+            height: 18px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 1.9;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .gallery-close:hover,
+        .gallery-control:hover:not(:disabled) {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.7);
+            box-shadow: 0 16px 30px rgba(0, 0, 0, 0.34), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+            transform: translateY(-1px);
+        }
+
+        .gallery-close:active,
+        .gallery-control:active:not(:disabled) {
+            transform: translateY(0);
+            background: rgba(255, 255, 255, 0.14);
+        }
+
+        .gallery-stage {
+            position: relative;
+            display: grid;
+            grid-template-columns: minmax(48px, 1fr) minmax(0, 5fr) minmax(48px, 1fr);
+            align-items: center;
+            justify-items: center;
+            min-height: 0;
+        }
+
+        .gallery-image-wrap {
+            display: grid;
+            place-items: center;
+            width: 100%;
+            height: 100%;
+            min-height: 0;
+            padding: 42px 0 18px;
+            box-sizing: border-box;
+        }
+
+        .gallery-image {
+            display: block;
+            max-width: 100%;
+            max-height: calc(100vh - 180px);
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            box-shadow: 0 24px 80px rgba(0, 0, 0, 0.38);
+        }
+
+        .gallery-control {
+            display: grid;
+            place-items: center;
+            width: 48px;
+            height: 48px;
+            padding: 0;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 50%;
+            background: rgba(10, 10, 10, 0.52);
+            color: #ffffff;
+            box-shadow: 0 12px 26px rgba(0, 0, 0, 0.26), inset 0 1px 0 rgba(255, 255, 255, 0.07);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            cursor: pointer;
+            transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .gallery-control:disabled {
+            opacity: 0.34;
+            background: rgba(255, 255, 255, 0.02);
+            border-color: rgba(255, 255, 255, 0.18);
+            box-shadow: none;
+            cursor: default;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .gallery-close,
+            .gallery-control {
+                transition: none;
+            }
+        }
+
+        .gallery-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+            min-height: 68px;
+            padding: 8px 9%;
+            border-top: 1px solid rgba(255, 255, 255, 0.22);
+            box-sizing: border-box;
+        }
+
+        .gallery-caption {
+            margin: 0;
+            font-size: clamp(16px, 2vw, 22px);
+            font-weight: 300;
+            letter-spacing: 0.04em;
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip-path: inset(50%);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        .gallery.gallery-show-caption .gallery-caption {
+            position: static;
+            width: auto;
+            height: auto;
+            padding: 0;
+            margin: 0;
+            overflow: visible;
+            clip-path: none;
+            white-space: normal;
+        }
+
+        .gallery-count {
+            flex: 0 0 auto;
+            color: rgba(255, 255, 255, 0.76);
+            font: 400 11px/1 "Montserrat Alternates", sans-serif;
+            letter-spacing: 0.13em;
+            white-space: nowrap;
+        }
+
+        .gallery-error {
+            display: none;
+            max-width: 34rem;
+            padding: 24px;
+            color: #ffffff;
+            font-size: 18px;
+            text-align: center;
+        }
+
+        .gallery-image-wrap.image-unavailable .gallery-image {
+            display: none;
+        }
+
+        .gallery-image-wrap.image-unavailable .gallery-error {
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            .gallery {
+                padding: 12px;
+            }
+
+            .gallery-dialog {
+                height: 100%;
+                grid-template-rows: minmax(0, 1fr) auto;
+            }
+
+            .gallery-stage {
+                grid-template-columns: 42px minmax(0, 1fr) 42px;
+                column-gap: 5px;
+            }
+
+            .gallery-image-wrap {
+                padding: 54px 0 18px;
+            }
+
+            .gallery-image {
+                max-height: calc(100svh - 190px);
+            }
+
+            .gallery-control {
+                width: 42px;
+                height: 42px;
+                border: 1px solid rgba(255, 255, 255, 0.82);
+                background: rgba(0, 0, 0, 0.58);
+                box-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
+                font-size: 24px;
+            }
+
+            .gallery-close {
+                width: 42px;
+                height: 42px;
+            }
+
+            .gallery-footer {
+                min-height: 66px;
+                padding: 10px 4px;
+                gap: 10px;
+            }
+
+            .gallery-caption {
+                font-size: 15px;
+                line-height: 1.35;
+            }
+
+            .gallery-count {
+                font-size: 10px;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -1106,12 +1872,11 @@
         <button id="close-menu" aria-label="Fermer le menu"><span aria-hidden="true">&times;</span></button>
         <a href="#bouquets" onclick="closeMobileMenu()" data-index="1" aria-label="Voir nos bouquets de fleurs">Bouquets</a>
         <a href="#mariages" onclick="closeMobileMenu()" data-index="2" aria-label="Découvrir nos compositions florales pour mariages">Mariages</a>
-        <a href="#obseques" onclick="closeMobileMenu()" data-index="3" aria-label="Nos créations florales pour obsèques">Obsèques</a>
+        <a href="#obseques" onclick="closeMobileMenu()" data-index="3" aria-label="Nos créations florales pour obsèques">Obs<span class="menu-accent">&egrave;</span>ques</a>
         <a href="#abonnements" onclick="closeMobileMenu()" data-index="4" aria-label="S'abonner à nos fleurs fraîches">Abonnements</a>
-        <a href="#decoration" onclick="closeMobileMenu()" data-index="5" aria-label="Nos services de décoration florale">Décoration</a>
-        <a href="#baobab-collection" onclick="closeMobileMenu()" data-index="6" aria-label="Découvrir la collection Baobab">BaoBab collection</a>
-        <a href="#bougie-marrakech" onclick="closeMobileMenu()" data-index="7" aria-label="Bougie Marrakech aux senteurs envoûtantes">Bougie Marrakech</a>
-        <a href="#contact" onclick="closeMobileMenu()" data-index="8" aria-label="Nous contacter">Contact</a>
+        <a href="#decoration" onclick="closeMobileMenu()" data-index="5" aria-label="Nos services de décoration florale">D<span class="menu-accent">&eacute;</span>coration</a>
+        <a href="#baobab-collection" onclick="closeMobileMenu()" data-index="6" aria-label="Découvrir nos bougies">Bougies</a>
+        <a href="#contact" onclick="closeMobileMenu()" data-index="7" aria-label="Nous contacter">Contact</a>
     </div>
 
     <header id="main-header">
@@ -1123,16 +1888,15 @@
         <nav id="main-nav">
             <a href="#bouquets" data-index="1">Bouquets</a>
             <a href="#mariages" data-index="2">Mariages</a>
-            <a href="#obseques" data-index="3">Obsèques</a>
-            <a href="#abonnements" data-index="4">Abonnements</a>
+            <a href="#obseques" data-index="3">Obs<span class="menu-accent">&egrave;</span>ques</a>
 
             <div class="logo-space">
                 <img id="logo-main" src="https://i.ibb.co/FbFpYxTm/logo.png" alt="Amour de Fleurs" class="logo-img" width="150" height="150">
             </div>
 
-            <a href="#decoration" data-index="5">Décoration</a>
-            <a href="#baobab-collection" data-index="6">BaoBab collection</a>
-            <a href="#bougie-marrakech" data-index="7">Bougie Marrakech</a>
+            <a href="#abonnements" data-index="4">Abonnements</a>
+            <a href="#decoration" data-index="5">D<span class="menu-accent">&eacute;</span>coration</a>
+            <a href="#baobab-collection" data-index="6">Bougies</a>
         </nav>
     </header>
 
@@ -1143,7 +1907,7 @@
         <a href="https://fr.linkedin.com/in/guiet-jonathan-8aa4901b0" target="_blank" aria-label="Suivez-nous sur LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
     </div>
 
-    <a href="#contact" id="persistent-contact" onclick="event.preventDefault(); goToSection(8);" class="contact-icon" aria-label="Nous contacter">
+    <a href="#contact" id="persistent-contact" onclick="event.preventDefault(); goToSection(7);" class="contact-icon" aria-label="Nous contacter">
         <svg viewBox="0 0 24 24" aria-hidden="true">
             <path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6zm-2 0l-8 5-8-5h16zm0 12H4V8l8 5 8-5v10z"/>
         </svg>
@@ -1194,43 +1958,52 @@
 
         <section id="accueil">
             <h2 class="visually-hidden">Amour de Fleurs - Accueil</h2>
-            <img class="bg-img" src='boutique.webp' alt="Boutique Amour de Fleurs Soisy-sous-Montmorency - Fleuriste Artisanale 95" fetchpriority="high" decoding="sync">
-            
+            <picture class="hero-picture">
+                <source media="(max-width: 768px)" srcset="SLIDE-1mobile.webp">
+                <img class="bg-img" src="SLIDE-1ordinateur.webp" alt="Boutique Amour de Fleurs Soisy-sous-Montmorency - Fleuriste Artisanale 95" fetchpriority="high" decoding="sync">
+            </picture>
+            <div class="hero-tagline">
+                <h2>CR<span class="hero-accent" aria-label="É">E</span>ATEUR<br>D’ENVIES FLEURIES</h2>
+                <p>Maison familiale depuis 1960</p>
+            </div>
         </section>
         
         <section id="bouquets">
             <img class="bg-img" src='2.webp' loading="lazy" decoding="async" alt="Bouquet de fleurs fraîches artisanales - Création Amour de Fleurs Soisy">
-            <h2 class="section-title bouquets-text">Bouquets de fleurs <br> artisanaux</h2>
+            <h2 class="section-title bouquets-text">DES CR<span class="accent-character" aria-label="É">E</span>ATIONS<br>PENS<span class="accent-character" aria-label="É">E</span>ES AVEC VOUS<br>ET POUR VOUS</h2>
+            <button class="gallery-trigger" type="button" aria-label="Ouvrir la galerie des bouquets"><span class="visually-hidden">Ouvrir la galerie des bouquets</span></button>
         </section>
         
         <section id="mariages">
             <img class="bg-img" src='3.webp' loading="lazy" decoding="async" alt="Décoration florale mariage Val d'Oise - Compositions sur mesure">
-            <h2 class="section-title mariage-text">Fleuriste Mariage.<br>Élégance et émotion</h2>
+            <h2 class="section-title mariage-text">FLEURIR LE PLUS BEAU<br>JOUR DE VOTRE VIE</h2>
+            <button class="gallery-trigger" type="button" aria-label="Ouvrir la galerie des mariages"><span class="visually-hidden">Ouvrir la galerie des mariages</span></button>
         </section>
 
         <section id="obseques">
             <img class="bg-img" src='4.webp' loading="lazy" decoding="async" alt="Fleurs deuil et obsèques Soisy-sous-Montmorency - Couronnes florales">
-            <h2 class="section-title obseques-text">Fleurs pour Obsèques <br> & Hommages</h2>
+            <h2 class="section-title obseques-text">UN DERNIER<br class="mobile-title-break"> HOMMAGE</h2>
+            <button class="gallery-trigger" type="button" aria-label="Ouvrir la galerie des obsèques"><span class="visually-hidden">Ouvrir la galerie des obsèques</span></button>
         </section>
         
         <section id="abonnements">
             <img class="bg-img" src='5.webp' loading="lazy" decoding="async" alt="Abonnement floral pour particuliers et entreprises 95">
-            <h2 class="section-title abonnement-text">Abonnement floral.<br>Fraîcheur toute l’année</h2>
+            <h2 class="section-title abonnement-text deco-text">METTRE EN VALEUR<br>VOTRE ESPACE<br>PROFESSIONNEL</h2>
+            <button class="gallery-trigger" type="button" aria-label="Ouvrir la galerie des abonnements"><span class="visually-hidden">Ouvrir la galerie des abonnements</span></button>
         </section>
 
         <section id="decoration">
             <img class="bg-img" src='8.webp' loading="lazy" decoding="async" alt="Objets de décoration et compositions florales intérieures">
-            <h2 class="section-title deco-text">L'art de sublimer <br> votre intérieur</h2>
+            <h2 class="section-title">LA PLUS BELLE<br class="mobile-title-break"> D<span class="decoration-accent" aria-label="É">E</span>CORATION<br class="desktop-title-break"> POUR <br class="mobile-title-break">VOTRE INT<span class="decoration-accent" aria-label="É">E</span>RIEUR</h2>
+            <button class="gallery-trigger" type="button" aria-label="Ouvrir la galerie de décoration"><span class="visually-hidden">Ouvrir la galerie de décoration</span></button>
         </section>
 
         <section id="baobab-collection">
-            <img class="logo-section" src="https://eu.baobabcollection.com/cdn/shop/files/Design_sans_titre_7_03e59a02-bde6-4927-bd02-8013ba53ef52.png?crop=center&height=600&v=1728305175&width=1200" alt="Baobab Collection">
+            <h2 class="baobab-title">LES PLUS GRANDES<br>MARQUES DE BOUGIES<br>DISPONIBLES EN BOUTIQUE</h2>
+            <img class="brand-logo baobab-logo" src="BAOBAB.png" alt="Baobab Collection" loading="lazy" decoding="async">
+            <img class="brand-logo cote-bougie-logo" src="Cote_Bougie.png" alt="Côté Bougie Marrakech" loading="lazy" decoding="async">
+            <button class="gallery-trigger" type="button" aria-label="Ouvrir la galerie des bougies"><span class="visually-hidden">Ouvrir la galerie des bougies</span></button>
         </section>
-        
-        <section id="bougie-marrakech">
-            <img class="logo-section" src="https://static.wixstatic.com/media/d0ef64_c138f083548847eb8bde1d63766fead0~mv2.png/v1/fill/w_404,h_404,al_c,q_85,enc_avif,quality_auto/d0ef64_c138f083548847eb8bde1d63766fead0~mv2.png" alt="Bougie Marrakech">
-        </section>
-
         <section id="contact">
             <img class="bg-img" src='boutique.webp' loading="lazy" decoding="async" alt="Boutique Amour de Fleurs - Contactez-nous pour vos créations florales">
             <div class="contact-overlay">
@@ -1276,6 +2049,30 @@
                 </p>
             </footer>
         </section>
+    </div>
+
+    <div class="gallery" id="category-gallery" hidden>
+        <div class="gallery-dialog" role="dialog" aria-modal="true" aria-labelledby="gallery-caption" aria-describedby="gallery-count" tabindex="-1">
+            <button class="gallery-close gallery-control" id="gallery-close" type="button" aria-label="Fermer la galerie">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg>
+            </button>
+            <div class="gallery-stage">
+                <button class="gallery-control" id="gallery-previous" type="button" aria-label="Image precedente">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 5l-7 7 7 7"></path></svg>
+                </button>
+                <div class="gallery-image-wrap" id="gallery-image-wrap">
+                    <img class="gallery-image" id="gallery-image" alt="">
+                    <p class="gallery-error" id="gallery-error" role="status">Cette image n'est pas disponible pour le moment.</p>
+                </div>
+                <button class="gallery-control" id="gallery-next" type="button" aria-label="Image suivante">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 5l7 7-7 7"></path></svg>
+                </button>
+            </div>
+            <div class="gallery-footer">
+                <p class="gallery-caption" id="gallery-caption" aria-live="polite"></p>
+                <span class="gallery-count" id="gallery-count" aria-live="polite"></span>
+            </div>
+        </div>
     </div>
 
     <div id="consent-banner" style="display:none;position:fixed;bottom:0;left:0;width:100%;background:rgba(0, 0, 0, 0.5);color:#fff;padding:12px 16px;font-family:Arial,sans-serif;font-size:13px;z-index:99999;box-sizing:border-box;">
@@ -1350,6 +2147,150 @@
         let currentIndex = 0;
         let previousIndex = 0;
         let isTransitioning = false;
+        const getSectionTransitionDuration = () => window.matchMedia('(min-width: 769px)').matches ? 750 : 900;
+
+        const galleryData = {
+            bouquets: { label: 'Bouquet', names: ['Blanche', 'Diane', 'Élisabeth', 'Margaux', 'Joséphine', 'Victoria', 'Violette', 'Louise'], images: ['BOUQUET1.webp', 'BOUQUET2.webp', 'BOUQUET3.webp', 'BOUQUET4.webp', 'BOUQUET5.webp', 'BOUQUET6.webp', 'BOUQUET7.webp', 'BOUQUET8.webp'] },
+            mariages: { label: 'Mariage', images: ['MARIAGE-1_11zon.webp', 'MARIAGE-2_11zon.webp', 'MARIAGE-3_11zon.webp', 'MARIAGE-5_11zon.webp'] },
+            obseques: { label: 'Obseques', images: ['DEUIL-1_11zon.webp', 'DEUIL-2_11zon.webp', 'DEUIL-3_11zon.webp', 'DEUIL-4_11zon.webp'] },
+            abonnements: { label: 'Abonnement', images: ['ABONNEMENT-1.webp', 'ABONNEMENT-2.webp', 'ABONNEMENT-3.webp', 'ABONNEMENT-4.webp'] },
+            decoration: { label: 'Decoration', images: ['DÉCORATION-1.webp', 'DÉCORATION-2.webp', 'DÉCORATION-3.webp', 'DÉCORATION-4.webp'] },
+            'baobab-collection': { label: 'Bougie', images: ['BOUGIES-1.webp', 'BOUGIES-2.webp', 'BOUGIES-3.webp', 'BOUGIES-4.webp'] }
+        };
+        const gallery = document.getElementById('category-gallery');
+        const galleryDialog = gallery.querySelector('.gallery-dialog');
+        const galleryImage = document.getElementById('gallery-image');
+        const galleryImageWrap = document.getElementById('gallery-image-wrap');
+        const galleryCaption = document.getElementById('gallery-caption');
+        const galleryCount = document.getElementById('gallery-count');
+        const galleryClose = document.getElementById('gallery-close');
+        const galleryPrevious = document.getElementById('gallery-previous');
+        const galleryNext = document.getElementById('gallery-next');
+        const inertTargets = [
+            document.getElementById('main-header'),
+            document.getElementById('mobile-menu-overlay'),
+            document.querySelector('.container'),
+            document.getElementById('persistent-socials'),
+            document.getElementById('persistent-contact'),
+            document.getElementById('shop-trigger'),
+            document.getElementById('shop-popup'),
+            document.getElementById('consent-banner')
+        ].filter(Boolean);
+        let activeGallery = null;
+        let activeGalleryIndex = 0;
+        let galleryOpener = null;
+        let priorBodyOverflow = '';
+        let inertStates = [];
+        let galleryTouchStart = null;
+
+        function renderGalleryImage() {
+            const fileName = activeGallery.images[activeGalleryIndex];
+            const label = activeGallery.names?.[activeGalleryIndex] || activeGallery.label + ' — Inspiration ' + String(activeGalleryIndex + 1).padStart(2, '0');
+            galleryImageWrap.classList.remove('image-unavailable');
+            galleryImage.src = fileName;
+            galleryImage.alt = label;
+            galleryCaption.replaceChildren(...label.split(/([Éé])/u).map(part => {
+                if (!/^[Éé]$/.test(part)) return document.createTextNode(part);
+                const accent = document.createElement('span');
+                accent.className = 'accent-character';
+                accent.textContent = part === 'É' ? 'E' : 'e';
+                return accent;
+            }));
+            galleryCount.textContent = String(activeGalleryIndex + 1).padStart(2, '0') + ' / ' + String(activeGallery.images.length).padStart(2, '0');
+            galleryPrevious.disabled = activeGalleryIndex === 0;
+            galleryNext.disabled = activeGalleryIndex === activeGallery.images.length - 1;
+        }
+
+        function openGallery(sectionId, opener) {
+            activeGallery = galleryData[sectionId];
+            if (!activeGallery) return;
+
+            gallery.classList.toggle('gallery-show-caption', sectionId === 'bouquets');
+            activeGalleryIndex = 0;
+            galleryOpener = opener || document.querySelector('#' + sectionId + ' .gallery-trigger');
+            inertStates = inertTargets.map(element => ({ element, inert: element.inert }));
+            inertTargets.forEach(element => { element.inert = true; });
+            priorBodyOverflow = document.body.style.overflow;
+            document.body.style.overflow = 'hidden';
+            gallery.hidden = false;
+            renderGalleryImage();
+            galleryClose.focus();
+        }
+
+        function closeGallery() {
+            if (gallery.hidden) return;
+            gallery.hidden = true;
+            activeGallery = null;
+            galleryImage.removeAttribute('src');
+            document.body.style.overflow = priorBodyOverflow;
+            inertStates.forEach(state => { state.element.inert = state.inert; });
+            if (galleryOpener && galleryOpener.isConnected) galleryOpener.focus();
+            galleryOpener = null;
+            galleryTouchStart = null;
+        }
+
+        function moveGallery(direction) {
+            if (!activeGallery) return;
+            const nextIndex = activeGalleryIndex + direction;
+            if (nextIndex < 0 || nextIndex >= activeGallery.images.length) return;
+            activeGalleryIndex = nextIndex;
+            renderGalleryImage();
+        }
+
+        Object.keys(galleryData).forEach(sectionId => {
+            const section = document.getElementById(sectionId);
+            section.addEventListener('click', event => {
+                if (event.target.closest('a, button, input, textarea, select')) {
+                    if (!event.target.closest('.gallery-trigger')) return;
+                }
+                openGallery(sectionId, section.querySelector('.gallery-trigger'));
+            });
+        });
+
+        galleryClose.addEventListener('click', closeGallery);
+        galleryPrevious.addEventListener('click', () => moveGallery(-1));
+        galleryNext.addEventListener('click', () => moveGallery(1));
+        gallery.addEventListener('click', event => {
+            if (event.target === gallery) closeGallery();
+        });
+        galleryImage.addEventListener('error', () => galleryImageWrap.classList.add('image-unavailable'));
+        gallery.addEventListener('touchstart', event => {
+            galleryTouchStart = { x: event.changedTouches[0].clientX, y: event.changedTouches[0].clientY };
+        }, { passive: true });
+        gallery.addEventListener('touchend', event => {
+            if (!galleryTouchStart) return;
+            const deltaX = event.changedTouches[0].clientX - galleryTouchStart.x;
+            const deltaY = event.changedTouches[0].clientY - galleryTouchStart.y;
+            if (Math.abs(deltaX) > 50 && Math.abs(deltaX) > Math.abs(deltaY)) {
+                moveGallery(deltaX < 0 ? 1 : -1);
+            }
+            galleryTouchStart = null;
+        }, { passive: true });
+
+        document.addEventListener('keydown', event => {
+            if (gallery.hidden) return;
+            if (event.key === 'Escape') {
+                event.preventDefault();
+                closeGallery();
+            } else if (event.key === 'ArrowLeft') {
+                event.preventDefault();
+                moveGallery(-1);
+            } else if (event.key === 'ArrowRight') {
+                event.preventDefault();
+                moveGallery(1);
+            } else if (event.key === 'Tab') {
+                const focusable = Array.from(gallery.querySelectorAll('button:not(:disabled)'));
+                const first = focusable[0];
+                const last = focusable[focusable.length - 1];
+                if (event.shiftKey && document.activeElement === first) {
+                    event.preventDefault();
+                    last.focus();
+                } else if (!event.shiftKey && document.activeElement === last) {
+                    event.preventDefault();
+                    first.focus();
+                }
+            }
+        });
 
         function playSound() {
             const sound = document.getElementById('click-sound');
@@ -1375,7 +2316,7 @@
         closeMenuBtn.addEventListener('click', closeMobileMenu);
 
         function updateUI(index, prevIndex = index) {
-            if (index === 8) {
+            if (index === 7) {
                 header.style.opacity = "0";
                 header.style.pointerEvents = "none";
                 contactIcon.style.opacity = "0";
@@ -1392,11 +2333,11 @@
                 shopPopup.style.bottom = "120px";
             }
 
-            // Changer le menu et le logo pour baobab/marrakech
+            // Changer le menu et le logo pour la collection Baobab
             const nav = document.querySelector('nav');
             const headerEl = document.getElementById('main-header');
             const logo = document.getElementById('logo-main');
-            const isPremiumSection = index === 6 || index === 7; // 6 = baobab, 7 = marrakech
+            const isPremiumSection = index === 6;
             const isFromDecorationToBaobab = prevIndex === 5 && index === 6;
 
             function applyDarkMode() {
@@ -1416,7 +2357,7 @@
                 nav.classList.remove('dark-menu');
                 headerEl.classList.remove('dark-menu');
                 document.body.classList.remove('dark-menu');
-                logo.src = 'logo.png';
+                logo.src = 'https://i.ibb.co/FbFpYxTm/logo.png';
             }
 
             navLinks.forEach(link => {
@@ -1442,7 +2383,7 @@
             });
 
             updateUI(currentIndex, prevIndex);
-            setTimeout(() => { isTransitioning = false; }, 900);
+            setTimeout(() => { isTransitioning = false; }, getSectionTransitionDuration());
         }
 
         // Initialisation propre de l'état des sections
@@ -1451,14 +2392,46 @@
         });
         goToSection(0);
 
+        let wheelGestureLocked = false;
+        let wheelIdleTimer = null;
+        const wheelIdleDelay = 320;
+
+        function releaseWheelGestureWhenIdle() {
+            wheelIdleTimer = null;
+            if (!wheelGestureLocked) return;
+
+            if (isTransitioning) {
+                wheelIdleTimer = setTimeout(releaseWheelGestureWhenIdle, 100);
+                return;
+            }
+            wheelGestureLocked = false;
+        }
+
         window.addEventListener('wheel', (e) => {
-            if (e.deltaY > 0) goToSection(currentIndex + 1);
-            else goToSection(currentIndex - 1);
+            if (e.deltaY === 0) return;
+
+            if (wheelIdleTimer !== null) clearTimeout(wheelIdleTimer);
+            if (wheelGestureLocked) {
+                wheelIdleTimer = setTimeout(releaseWheelGestureWhenIdle, wheelIdleDelay);
+                return;
+            }
+
+            wheelGestureLocked = true;
+            wheelIdleTimer = setTimeout(releaseWheelGestureWhenIdle, wheelIdleDelay);
+            if (!gallery.hidden) {
+                moveGallery(Math.sign(e.deltaY));
+            } else {
+                goToSection(currentIndex + Math.sign(e.deltaY));
+            }
         }, { passive: true });
 
         let touchStart = 0;
-        window.addEventListener('touchstart', (e) => touchStart = e.touches[0].clientY);
+        window.addEventListener('touchstart', (e) => {
+            if (!gallery.hidden) return;
+            touchStart = e.touches[0].clientY;
+        });
         window.addEventListener('touchend', (e) => {
+            if (!gallery.hidden) return;
             let touchEnd = e.changedTouches[0].clientY;
             if (touchStart - touchEnd > 50) goToSection(currentIndex + 1);
             else if (touchEnd - touchStart > 50) goToSection(currentIndex - 1);
