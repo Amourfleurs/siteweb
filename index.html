@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -222,6 +222,7 @@
             background-color: #000;
             height: 100%;
             overflow: hidden;
+            overscroll-behavior: none;
             font-family: Arial, sans-serif;
         }
         /* HEADER FIXE */
@@ -492,6 +493,25 @@
             transition: transform 0.9s cubic-bezier(0.65, 0, 0.35, 1);
             box-shadow: 0 -10px 30px rgba(0,0,0,0.5);
             overflow: hidden;
+        }
+
+        .scroll-cursor-proxy {
+            position: fixed;
+            z-index: 2147483647;
+            display: none;
+            width: 24px;
+            height: 30px;
+            pointer-events: none;
+            transform: translate(-2px, -2px);
+        }
+
+        .scroll-cursor-proxy.is-visible {
+            display: block;
+        }
+
+        body.scroll-cursor-active,
+        body.scroll-cursor-active * {
+            cursor: none !important;
         }
 
         @media (min-width: 769px) {
@@ -2230,11 +2250,12 @@
         }
 
         function moveGallery(direction) {
-            if (!activeGallery) return;
+            if (!activeGallery) return false;
             const nextIndex = activeGalleryIndex + direction;
-            if (nextIndex < 0 || nextIndex >= activeGallery.images.length) return;
+            if (nextIndex < 0 || nextIndex >= activeGallery.images.length) return false;
             activeGalleryIndex = nextIndex;
             renderGalleryImage();
+            return true;
         }
 
         Object.keys(galleryData).forEach(sectionId => {
@@ -2369,7 +2390,7 @@
         }
 
         function goToSection(index) {
-            if (index < 0 || index >= sections.length || isTransitioning) return;
+            if (index < 0 || index >= sections.length || isTransitioning) return false;
             isTransitioning = true;
             const prevIndex = currentIndex;
             currentIndex = index;
@@ -2383,7 +2404,10 @@
             });
 
             updateUI(currentIndex, prevIndex);
-            setTimeout(() => { isTransitioning = false; }, getSectionTransitionDuration());
+            setTimeout(() => {
+                isTransitioning = false;
+            }, getSectionTransitionDuration());
+            return true;
         }
 
         // Initialisation propre de l'état des sections
@@ -2392,36 +2416,81 @@
         });
         goToSection(0);
 
-        let wheelGestureLocked = false;
-        let wheelIdleTimer = null;
-        const wheelIdleDelay = 320;
-
-        function releaseWheelGestureWhenIdle() {
-            wheelIdleTimer = null;
-            if (!wheelGestureLocked) return;
-
-            if (isTransitioning) {
-                wheelIdleTimer = setTimeout(releaseWheelGestureWhenIdle, 100);
-                return;
-            }
-            wheelGestureLocked = false;
-        }
+        /*
+         * GESTION DU SCROLL (molette + pavé tactile)
+         *
+         * Problème d'origine : un pavé tactile continue d'envoyer des événements "wheel"
+         * (inertie) pendant ~1 seconde après le geste. L'ancien code attendait 320 ms
+         * SANS aucun événement pour autoriser le geste suivant : avec l'inertie, ce
+         * silence n'arrivait pas assez vite et le scroll suivant était ignoré
+         * (ou, pire, l'inertie file-attendait et faisait sauter une section).
+         *
+         * Nouvelle logique :
+         *  1. Un geste déclenche UN changement de section, puis on verrouille pendant
+         *     la durée de l'animation.
+         *  2. Après l'animation, on ignore la "queue" d'inertie (valeurs qui décroissent)
+         *     tant qu'on ne détecte pas un NOUVEAU geste : pause > 90 ms, changement de
+         *     direction, ou nette ré-accélération du delta.
+         */
+        const WHEEL_THRESHOLD = 40;        // cumul minimal pour déclencher
+        const WHEEL_NEW_GESTURE_GAP = 90;  // ms de silence = nouveau geste
+        const WHEEL_ACCUM_RESET_GAP = 120; // ms de silence = on remet le cumul à zéro
+        let wheelLockUntil = 0;
+        let wheelNeedsNewGesture = false;
+        let wheelLastTime = 0;
+        let wheelLastAbs = 0;
+        let wheelLastDirection = 0;
+        let wheelAccum = 0;
 
         window.addEventListener('wheel', (e) => {
-            if (e.deltaY === 0) return;
+            if (e.ctrlKey) return;
 
-            if (wheelIdleTimer !== null) clearTimeout(wheelIdleTimer);
-            if (wheelGestureLocked) {
-                wheelIdleTimer = setTimeout(releaseWheelGestureWhenIdle, wheelIdleDelay);
-                return;
+            const deltaY = e.deltaY * (e.deltaMode === 1 ? 16 : e.deltaMode === 2 ? window.innerHeight : 1);
+            const deltaX = e.deltaX * (e.deltaMode === 1 ? 16 : e.deltaMode === 2 ? window.innerWidth : 1);
+            if (deltaY === 0 || Math.abs(deltaY) <= Math.abs(deltaX)) return;
+
+            const now = performance.now();
+            const abs = Math.abs(deltaY);
+            const direction = Math.sign(deltaY);
+            const gap = now - wheelLastTime;
+            const prevAbs = wheelLastAbs;
+            const prevDirection = wheelLastDirection;
+
+            // On mémorise toujours l'état, même pendant le verrouillage,
+            // pour bien analyser la queue d'inertie.
+            wheelLastTime = now;
+            wheelLastAbs = abs;
+            wheelLastDirection = direction;
+
+            if (gap > WHEEL_ACCUM_RESET_GAP || direction !== prevDirection) {
+                wheelAccum = 0;
             }
 
-            wheelGestureLocked = true;
-            wheelIdleTimer = setTimeout(releaseWheelGestureWhenIdle, wheelIdleDelay);
-            if (!gallery.hidden) {
-                moveGallery(Math.sign(e.deltaY));
-            } else {
-                goToSection(currentIndex + Math.sign(e.deltaY));
+            // Animation en cours : on ignore tout
+            if (now < wheelLockUntil) return;
+
+            // Animation terminée mais on est encore dans l'inertie du geste précédent
+            if (wheelNeedsNewGesture) {
+                const isNewGesture =
+                    gap > WHEEL_NEW_GESTURE_GAP ||
+                    direction !== prevDirection ||
+                    (abs >= 10 && abs > prevAbs * 1.4);
+                if (!isNewGesture) return;
+                wheelNeedsNewGesture = false;
+                wheelAccum = 0;
+            }
+
+            wheelAccum += deltaY;
+            if (Math.abs(wheelAccum) < WHEEL_THRESHOLD) return;
+
+            const dir = Math.sign(wheelAccum);
+            wheelAccum = 0;
+
+            const galleryOpen = !gallery.hidden;
+            const moved = galleryOpen ? moveGallery(dir) : goToSection(currentIndex + dir);
+            if (moved) {
+                wheelLockUntil = now + (galleryOpen ? 250 : getSectionTransitionDuration());
+                wheelNeedsNewGesture = true;
             }
         }, { passive: true });
 
