@@ -9,8 +9,8 @@
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <meta name="theme-color" content="#000000">
     <meta name="color-scheme" content="light">
-    <link rel="icon" type="image/png" href="favicon-20261023.PNG">
-    <link rel="manifest" href="manifest.json?v=20261023">
+    <link rel="icon" type="image/png" href="favicon-20261029.png">
+    <link rel="manifest" href="manifest.json?v=20261029">
     <link rel="canonical" href="https://www.amourdefleurs95.com/">
 
     <script>
@@ -1017,6 +1017,36 @@
             height: 32px;
         }
 
+        .delivery-icon {
+            position: fixed;
+            bottom: 128px;
+            left: 40px;
+            z-index: 1003;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            border: 0;
+            background: none;
+            cursor: pointer;
+            transition: transform 0.3s ease, filter 0.3s ease;
+        }
+        .delivery-icon img {
+            display: block;
+            width: 32px;
+            height: 32px;
+            object-fit: contain;
+        }
+        .delivery-icon:hover,
+        .delivery-icon:focus-visible {
+            transform: translateY(-2px);
+            filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.6));
+        }
+        .delivery-icon:focus-visible {
+            outline: 2px solid #ffffff;
+            outline-offset: 5px;
+        }
+
         /* Popup Boutique */
         .shop-popup {
             position: fixed;
@@ -1039,6 +1069,104 @@
         }
         .shop-popup.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .delivery-popup {
+            bottom: 220px;
+            width: min(360px, calc(100vw - 80px));
+            padding: 20px 22px;
+        }
+        .delivery-copy {
+            overflow: hidden;
+            max-height: 0;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: opacity 0.35s ease, max-height 0.35s ease, transform 0.35s ease;
+        }
+        .delivery-popup.active .delivery-copy {
+            max-height: 520px;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .delivery-intro {
+            margin-bottom: 16px;
+        }
+        .delivery-intro h2 {
+            margin: 0 0 5px;
+            font-family: "Optima", "Avenir Next", sans-serif;
+            font-size: 25px;
+            font-weight: 400;
+            line-height: 1.15;
+            letter-spacing: 0.01em;
+        }
+        .delivery-intro p,
+        .delivery-instructions,
+        .delivery-address {
+            font-size: 13px;
+            line-height: 1.5;
+            opacity: 0.94;
+        }
+        .delivery-intro p {
+            margin: 0;
+            font-size: 14px;
+        }
+        .delivery-highlight {
+            margin: 0 0 15px;
+            padding: 1px 0 1px 13px;
+            border-left: 2px solid rgba(255, 255, 255, 0.9);
+        }
+        .delivery-highlight-title {
+            margin: 0 0 3px;
+            color: #ffffff;
+            font-family: "Optima", "Avenir Next", sans-serif;
+            font-size: 19px;
+            line-height: 1.2;
+        }
+        .delivery-communes {
+            margin: 0;
+            font-size: 13px;
+            line-height: 1.45;
+            opacity: 0.92;
+        }
+        .delivery-instructions {
+            margin: 0 0 12px;
+            padding-top: 12px;
+            border-top: 1px solid rgba(255, 255, 255, 0.18);
+        }
+        .delivery-address {
+            display: grid;
+            gap: 1px;
+            margin: 0 0 11px;
+            padding-top: 11px;
+            border-top: 1px solid rgba(255, 255, 255, 0.18);
+            font-style: normal;
+        }
+        .delivery-address strong {
+            margin-bottom: 2px;
+            color: #ffffff;
+            font-size: 13px;
+            letter-spacing: 0.04em;
+        }
+        .delivery-phone {
+            display: inline-flex;
+            width: fit-content;
+            color: #ffffff;
+            font-size: 15px;
+            font-weight: 600;
+            line-height: 1.3;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.72);
+            padding-bottom: 3px;
+            transition: color 0.2s ease, border-color 0.2s ease;
+        }
+        .delivery-phone:hover,
+        .delivery-phone:focus-visible {
+            color: #ffffff;
+            border-color: #ffffff;
+        }
+        .delivery-phone:focus-visible {
+            outline: 2px solid #ffffff;
+            outline-offset: 4px;
+        }
 
         .popup-header { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px; }
         .google-rate { color: #ffffff; font-weight: bold; font-size: 14px; display: flex; align-items: center; gap: 4px; }
@@ -1301,12 +1429,18 @@
                 /* Décaler les icônes vers les côtés sur mobile uniquement */
                 .shop-icon {
                     left: 17px !important;
+                    bottom: 140px !important;
                 }
                 .contact-icon {
                     left: 17px !important;
                 }
                 .shop-popup {
                     left: 40px !important;
+                    width: min(320px, calc(100vw - 56px)) !important;
+                    bottom: 180px !important;
+                    box-sizing: border-box;
+                    max-height: calc(100vh - 280px);
+                    overflow-y: auto;
                 }
                 .home-social-links {
                     right: 17px !important;
@@ -1469,8 +1603,18 @@
 
         @media (max-width: 768px) {
             #persistent-socials,
-            #persistent-contact,
+            #persistent-contact {
+                display: none !important;
+            }
+
             #shop-trigger {
+                display: none !important;
+            }
+
+            .delivery-icon {
+                display: none;
+            }
+            #delivery-popup {
                 display: none !important;
             }
 
@@ -1648,6 +1792,60 @@
         .gallery-trigger:focus-visible {
             outline: 3px solid #ffffff;
             outline-offset: -10px;
+        }
+
+        .gallery-discovery {
+            position: absolute;
+            z-index: 13;
+            top: 112px;
+            right: clamp(16px, 4vw, 48px);
+            display: grid;
+            width: 44px;
+            height: 44px;
+            place-items: center;
+            border: 1px solid rgba(255, 244, 211, 0.94);
+            background: rgba(8, 8, 8, 0.76);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            color: #fff3cc;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.38), inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+            pointer-events: none;
+            transition: transform 0.25s ease, background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+        }
+        .gallery-discovery-icon {
+            display: block;
+            width: 23px;
+            height: 23px;
+        }
+        .gallery-discovery-icon svg {
+            display: block;
+            width: 100%;
+            height: 100%;
+            fill: none;
+            stroke: currentColor;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-width: 1.7;
+        }
+        .gallery-trigger:hover ~ .gallery-discovery,
+        .gallery-trigger:focus-visible ~ .gallery-discovery,
+        section:hover .gallery-discovery {
+            transform: translateY(-2px);
+            border-color: #ffffff;
+            background: rgba(8, 8, 8, 0.9);
+            color: #ffffff;
+        }
+        @media (max-width: 768px) {
+            .gallery-discovery {
+                top: 104px;
+                right: 16px;
+                width: 40px;
+                height: 40px;
+            }
+            .gallery-discovery-icon {
+                width: 21px;
+                height: 21px;
+            }
         }
 
         .gallery-control:focus-visible {
@@ -1954,7 +2152,7 @@
         </svg>
     </a>
 
-    <button id="shop-trigger" class="shop-icon" aria-label="Informations boutique" type="button">
+    <button id="shop-trigger" class="shop-icon" aria-label="Informations boutique" aria-controls="shop-popup" aria-expanded="false" type="button">
         <svg fill="none" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <path d="M3 10V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V10" stroke="currentColor" stroke-width="1.5"/>
             <path d="M14.8333 21V15C14.8333 13.8954 13.9379 13 12.8333 13H10.8333C9.72874 13 8.83331 13.8954 8.83331 15V21" stroke="currentColor" stroke-miterlimit="16"/>
@@ -1964,7 +2162,31 @@
         </svg>
     </button>
 
-    <div id="shop-popup" class="shop-popup">
+    <button id="delivery-trigger" class="delivery-icon" type="button" aria-label="Informations sur la livraison" aria-controls="delivery-popup" aria-expanded="false">
+        <img src="delivery-icon.png" alt="">
+    </button>
+
+    <div id="delivery-popup" class="shop-popup delivery-popup" aria-hidden="true">
+        <div class="delivery-copy">
+            <div class="delivery-intro">
+                <h2>Livraison de fleurs</h2>
+                <p>Nous livrons vos fleurs en Île-de-France.</p>
+            </div>
+            <div class="delivery-highlight">
+                <p class="delivery-highlight-title"><strong>Livraison gratuite</strong></p>
+                <p class="delivery-communes">Soisy-sous-Montmorency, Enghien-les-Bains, Andilly et Montmorency.</p>
+            </div>
+            <p class="delivery-instructions">Pour commander ou connaître les modalités de livraison, contactez-nous par téléphone ou rendez-nous visite en boutique.</p>
+            <address class="delivery-address">
+                <strong>Amour de Fleurs</strong>
+                <span>45 avenue du Général Leclerc</span>
+                <span>95230 Soisy-sous-Montmorency</span>
+            </address>
+            <a class="delivery-phone" href="tel:+33139897442">01 39 89 74 42</a>
+        </div>
+    </div>
+
+    <div id="shop-popup" class="shop-popup" aria-hidden="true">
         <div class="shop-status">Ouvert tous les jours, toute l’année</div>
         <div class="popup-header">
             <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="currentColor"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="currentColor"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="currentColor"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.66l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="currentColor"/></svg>
@@ -2013,30 +2235,35 @@
             <img class="bg-img" src='2.webp' loading="lazy" decoding="async" alt="Bouquet de fleurs fraîches artisanales - Création Amour de Fleurs Soisy">
             <h2 class="section-title bouquets-text">DES CR<span class="accent-character" aria-label="É">E</span>ATIONS<br>PENS<span class="accent-character" aria-label="É">E</span>ES AVEC VOUS<br>ET POUR VOUS</h2>
             <button class="gallery-trigger" type="button" aria-label="Ouvrir la galerie des bouquets"><span class="visually-hidden">Ouvrir la galerie des bouquets</span></button>
+            <span class="gallery-discovery" aria-hidden="true"><span class="gallery-discovery-icon"><svg viewBox="0 0 24 24"><rect x="3.5" y="4.25" width="17" height="15.5" rx="1.5"/><circle cx="8.5" cy="9" r="1.5"/><path d="m4.5 17 4.25-4.25 3.25 3.25 2.25-2.25 5.25 5.25"/></svg></span></span>
         </section>
         
         <section id="mariages">
             <img class="bg-img" src='3.webp' loading="lazy" decoding="async" alt="Décoration florale mariage Val d'Oise - Compositions sur mesure">
             <h2 class="section-title mariage-text">FLEURIR LE PLUS BEAU<br>JOUR DE VOTRE VIE</h2>
             <button class="gallery-trigger" type="button" aria-label="Ouvrir la galerie des mariages"><span class="visually-hidden">Ouvrir la galerie des mariages</span></button>
+            <span class="gallery-discovery" aria-hidden="true"><span class="gallery-discovery-icon"><svg viewBox="0 0 24 24"><rect x="3.5" y="4.25" width="17" height="15.5" rx="1.5"/><circle cx="8.5" cy="9" r="1.5"/><path d="m4.5 17 4.25-4.25 3.25 3.25 2.25-2.25 5.25 5.25"/></svg></span></span>
         </section>
 
         <section id="obseques">
             <img class="bg-img" src='4.webp' loading="lazy" decoding="async" alt="Fleurs deuil et obsèques Soisy-sous-Montmorency - Couronnes florales">
             <h2 class="section-title obseques-text">UN DERNIER<br class="mobile-title-break"> HOMMAGE</h2>
             <button class="gallery-trigger" type="button" aria-label="Ouvrir la galerie des obsèques"><span class="visually-hidden">Ouvrir la galerie des obsèques</span></button>
+            <span class="gallery-discovery" aria-hidden="true"><span class="gallery-discovery-icon"><svg viewBox="0 0 24 24"><rect x="3.5" y="4.25" width="17" height="15.5" rx="1.5"/><circle cx="8.5" cy="9" r="1.5"/><path d="m4.5 17 4.25-4.25 3.25 3.25 2.25-2.25 5.25 5.25"/></svg></span></span>
         </section>
         
         <section id="abonnements">
             <img class="bg-img" src='5.webp' loading="lazy" decoding="async" alt="Abonnement floral pour particuliers et entreprises 95">
             <h2 class="section-title abonnement-text deco-text">METTRE EN VALEUR<br>VOTRE ESPACE<br>PROFESSIONNEL</h2>
             <button class="gallery-trigger" type="button" aria-label="Ouvrir la galerie des abonnements"><span class="visually-hidden">Ouvrir la galerie des abonnements</span></button>
+            <span class="gallery-discovery" aria-hidden="true"><span class="gallery-discovery-icon"><svg viewBox="0 0 24 24"><rect x="3.5" y="4.25" width="17" height="15.5" rx="1.5"/><circle cx="8.5" cy="9" r="1.5"/><path d="m4.5 17 4.25-4.25 3.25 3.25 2.25-2.25 5.25 5.25"/></svg></span></span>
         </section>
 
         <section id="decoration">
             <img class="bg-img" src='8.webp' loading="lazy" decoding="async" alt="Objets de décoration et compositions florales intérieures">
             <h2 class="section-title">LA PLUS BELLE<br class="mobile-title-break"> D<span class="decoration-accent" aria-label="É">E</span>CORATION<br class="desktop-title-break"> POUR <br class="mobile-title-break">VOTRE INT<span class="decoration-accent" aria-label="É">E</span>RIEUR</h2>
             <button class="gallery-trigger" type="button" aria-label="Ouvrir la galerie de décoration"><span class="visually-hidden">Ouvrir la galerie de décoration</span></button>
+            <span class="gallery-discovery" aria-hidden="true"><span class="gallery-discovery-icon"><svg viewBox="0 0 24 24"><rect x="3.5" y="4.25" width="17" height="15.5" rx="1.5"/><circle cx="8.5" cy="9" r="1.5"/><path d="m4.5 17 4.25-4.25 3.25 3.25 2.25-2.25 5.25 5.25"/></svg></span></span>
         </section>
 
         <section id="baobab-collection">
@@ -2044,6 +2271,7 @@
             <img class="brand-logo baobab-logo" src="BAOBAB.png" alt="Baobab Collection" loading="lazy" decoding="async">
             <img class="brand-logo cote-bougie-logo" src="Cote_Bougie.png" alt="Côté Bougie Marrakech" loading="lazy" decoding="async">
             <button class="gallery-trigger" type="button" aria-label="Ouvrir la galerie des bougies"><span class="visually-hidden">Ouvrir la galerie des bougies</span></button>
+            <span class="gallery-discovery" aria-hidden="true"><span class="gallery-discovery-icon"><svg viewBox="0 0 24 24"><rect x="3.5" y="4.25" width="17" height="15.5" rx="1.5"/><circle cx="8.5" cy="9" r="1.5"/><path d="m4.5 17 4.25-4.25 3.25 3.25 2.25-2.25 5.25 5.25"/></svg></span></span>
         </section>
         <section id="contact">
             <img class="bg-img" src='boutique.webp' loading="lazy" decoding="async" alt="Boutique Amour de Fleurs - Contactez-nous pour vos créations florales">
@@ -2136,6 +2364,8 @@
         const contactIcon = document.getElementById('persistent-contact');
         const shopIcon = document.getElementById('shop-trigger');
         const shopPopup = document.getElementById('shop-popup');
+        const deliveryIcon = document.getElementById('delivery-trigger');
+        const deliveryPopup = document.getElementById('delivery-popup');
         const menuToggle = document.getElementById('menu-toggle');
         const mobileOverlay = document.getElementById('mobile-menu-overlay');
         const closeMenuBtn = document.getElementById('close-menu');
@@ -2144,6 +2374,66 @@
         const privacyGroup = document.getElementById('privacy-group');
         const privacyCheckbox = document.getElementById('privacy');
         const requiredFields = Array.from(form.querySelectorAll('input[required], textarea[required]'));
+        const touchShopViewport = window.matchMedia('(max-width: 768px), (pointer: coarse)');
+
+        function setPopupActive(trigger, popup, active) {
+            popup.classList.toggle('active', active);
+            popup.setAttribute('aria-hidden', String(!active));
+            trigger.setAttribute('aria-expanded', String(active));
+        }
+
+        function attachPopupHoverBehavior(trigger, popup, allowTouchToggle = false) {
+            let closeTimer;
+            let wasOpenOnPointerDown = null;
+            const openPopup = () => {
+                clearTimeout(closeTimer);
+                const otherTrigger = trigger === shopIcon ? deliveryIcon : shopIcon;
+                const otherPopup = trigger === shopIcon ? deliveryPopup : shopPopup;
+                setPopupActive(otherTrigger, otherPopup, false);
+                setPopupActive(trigger, popup, true);
+            };
+            const closeWhenInactive = () => {
+                clearTimeout(closeTimer);
+                closeTimer = setTimeout(() => {
+                    const hoverSupported = window.matchMedia('(hover: hover)').matches;
+                    const isHovered = hoverSupported && (trigger.matches(':hover') || popup.matches(':hover'));
+                    const isFocused = trigger.contains(document.activeElement) || popup.contains(document.activeElement);
+                    if (!isHovered && !isFocused) setPopupActive(trigger, popup, false);
+                }, 140);
+            };
+
+            if (window.matchMedia('(hover: hover)').matches && (!touchShopViewport.matches || trigger === deliveryIcon)) {
+                trigger.addEventListener('mouseenter', openPopup);
+                popup.addEventListener('mouseenter', openPopup);
+                trigger.addEventListener('mouseleave', closeWhenInactive);
+                popup.addEventListener('mouseleave', closeWhenInactive);
+            }
+            const openOnKeyboardFocus = () => {
+                if (trigger.matches(':focus-visible') || popup.matches(':focus-visible')) openPopup();
+            };
+            trigger.addEventListener('focusin', openOnKeyboardFocus);
+            popup.addEventListener('focusin', openOnKeyboardFocus);
+            trigger.addEventListener('focusout', event => {
+                if (!trigger.contains(event.relatedTarget) && !popup.contains(event.relatedTarget)) closeWhenInactive();
+            });
+            popup.addEventListener('focusout', event => {
+                if (!trigger.contains(event.relatedTarget) && !popup.contains(event.relatedTarget)) closeWhenInactive();
+            });
+
+            if (allowTouchToggle) {
+                trigger.addEventListener('pointerdown', () => {
+                    if (touchShopViewport.matches) wasOpenOnPointerDown = popup.classList.contains('active');
+                });
+                trigger.addEventListener('click', event => {
+                    event.stopPropagation();
+                    playSound();
+                    if (!touchShopViewport.matches) return;
+                    const shouldOpen = wasOpenOnPointerDown === null ? true : !wasOpenOnPointerDown;
+                    wasOpenOnPointerDown = null;
+                    setPopupActive(trigger, popup, shouldOpen);
+                });
+            }
+        }
 
         form.addEventListener('submit', (event) => {
             if (!privacyCheckbox.checked) {
@@ -2364,7 +2654,10 @@
                 contactIcon.style.pointerEvents = "none";
                 shopIcon.style.bottom = "40px";
                 shopPopup.style.bottom = "80px";
-                shopPopup.classList.remove('active');
+                deliveryIcon.style.bottom = "88px";
+                deliveryPopup.style.bottom = "128px";
+                setPopupActive(shopIcon, shopPopup, false);
+                setPopupActive(deliveryIcon, deliveryPopup, false);
             } else {
                 header.style.opacity = "1";
                 header.style.pointerEvents = "auto";
@@ -2372,6 +2665,8 @@
                 contactIcon.style.pointerEvents = "auto";
                 shopIcon.style.bottom = "80px";
                 shopPopup.style.bottom = "120px";
+                deliveryIcon.style.bottom = "128px";
+                deliveryPopup.style.bottom = "220px";
             }
 
             // Changer le menu et le logo pour la collection Baobab
@@ -2536,23 +2831,23 @@
         // Retour à l'accueil lors du clic sur le logo
         document.getElementById('logo-main').addEventListener('click', () => goToSection(0));
 
-        // Gestion de la popup boutique
-        shopIcon.addEventListener('click', (e) => {
-            e.stopPropagation();
-            playSound();
-            shopPopup.classList.toggle('active');
-        });
+        attachPopupHoverBehavior(shopIcon, shopPopup, true);
+        attachPopupHoverBehavior(deliveryIcon, deliveryPopup);
 
         document.addEventListener('click', (e) => {
-            if (!shopPopup.contains(e.target) && e.target !== shopIcon) {
-                shopPopup.classList.remove('active');
+            if (!shopPopup.contains(e.target) && !shopIcon.contains(e.target)) {
+                setPopupActive(shopIcon, shopPopup, false);
+            }
+            if (!deliveryPopup.contains(e.target) && !deliveryIcon.contains(e.target)) {
+                setPopupActive(deliveryIcon, deliveryPopup, false);
             }
         });
 
         // Fermer la popup avec la touche Échap
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
-                shopPopup.classList.remove('active');
+                setPopupActive(shopIcon, shopPopup, false);
+                setPopupActive(deliveryIcon, deliveryPopup, false);
             }
         });
 
